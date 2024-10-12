@@ -1,21 +1,10 @@
-import React, { Component } from 'react';
+import Image from "next/image";
 
-interface PageProps {
+export default function Home() {
+  return (
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+        Home page initial
   
+   </div>
+  );
 }
-
-interface PageState {
-  
-}
-
-class Page extends Component<PageProps, PageState> {
-  render() {
-    return (
-      <div>
-          Home page Work in progrress
-      </div>
-    );
-  }
-}
-
-export default Page;
