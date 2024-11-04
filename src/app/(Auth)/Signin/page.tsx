@@ -1,10 +1,10 @@
 import React from "react";
-
+import { LoginBox } from "@/components";
 
 export default function Signin(){
     return(
         <div>
-            Signin Page
+            <LoginBox/>
         </div>
     )
 }
