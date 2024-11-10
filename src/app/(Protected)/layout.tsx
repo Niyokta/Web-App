@@ -33,13 +33,13 @@ export default function ProtectedLayout({
                 else setloading(false);
               })
               .catch((err) => {
-
+                router.replace('/Signin');
               })
 
           }
           else setloading(false);
         })
-        .catch((err) => { })
+        .catch((err) => { router.replace('/Signin');})
 
 
     }
