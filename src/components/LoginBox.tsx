@@ -16,8 +16,8 @@ import { Toaster } from "@/components/ui/toaster"
 import { useToast } from "@/hooks/use-toast"
 
 type creds = {
-    username: String,
-    password: String
+    username: string,
+    password: string
 }
 export default function LoginBox() {
     const { toast } = useToast()
@@ -29,36 +29,20 @@ export default function LoginBox() {
     const [loading, setloading] = React.useState(false);
     const handlesignin = async () => {
         setloading(true);
-        const a = await fetch('http://3.6.34.255:3000/api/v1/auth/signin', {
-            method: 'POST',
+        await fetch('/api/Auth/Signin', {
+            method: 'GET',
             credentials: 'include',
             headers: {
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify({
-                username:usercreds.username,
-                password:usercreds.password
-            })
-        })
-            .then((res) => res.json())
+                'Username': usercreds.username,
+                'Password': usercreds.password
+            }
+        }).then((res) => res.json())
             .then((res) => {
-                if (res.status == "200") {
-                    console.log(res)
-                    router.replace('/Dashboard')
-                }
-                else {
-                    setloading(false);
-                    toast({
-                        title: res.message,
-                      })
-                }
+                console.log(res)
+                if (res.status == "200") return router.replace('/Dashboard')
+                else setloading(false)
             })
-            .catch((err) =>{
-                setloading(false);
-                    toast({
-                        title: err.message,
-                      })
-            })
+            .catch((err) => setloading(false))
     }
     return (
         loading ? (

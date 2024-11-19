@@ -13,37 +13,17 @@ export default function AuthLayout({
 
     React.useEffect(()=>{
       async function authVerification(){
-        await fetch('http://3.6.34.255:3000/api/v1/auth/verifyToken',{
+        await fetch('/api/Auth/VerifyLogin',{
           method:'GET',
           credentials:'include'
         })
         .then((res)=>res.json())
-        .then(async(res)=>{
-          if(res.status=="200"){
-            router.replace('/Dashboard');
-            return;
-          }
-          else{
-            await fetch('http://3.6.34.255:3000/api/v1/auth/refreshToken',{
-              method:'GET',
-              credentials:'include'
-            })
-            .then((res)=>res.json())
-            .then((res)=>{
-              if(res.status=="200"){
-                router.replace('/Dashboard');
-                return;
-              }
-              else setloading(false);
-            })
-            .catch((err)=>{
-              
-            })
-          }
+        .then((res)=>{
+          console.log(res);
+          if(res.status=="200") router.replace('/Dashboard')
+          else setloading(false)
         })
-        .catch((err)=>{})
-
-
+        .catch((err)=>setloading(false))
       }
       authVerification();
     },[])
