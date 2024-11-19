@@ -43,6 +43,7 @@ export default function SignupBox() {
             return toast({ title: "Password & Confirm Password should match" })
         }
 
+        
 
 
         await fetch('/api/Auth/Signup', {
@@ -59,7 +60,6 @@ export default function SignupBox() {
         })
             .then((res) => res.json())
             .then((res) => {
-                console.log(res)
                 if (res.status === "200") router.replace('/auth/signin');
                 else setloading(false)
             })

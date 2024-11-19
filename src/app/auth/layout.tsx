@@ -20,7 +20,7 @@ export default function AuthLayout({
         .then((res)=>res.json())
         .then((res)=>{
           console.log(res);
-          if(res.status=="200") router.replace('/Dashboard')
+          if(res.status=="200") router.replace('/dashboard')
           else setloading(false)
         })
         .catch((err)=>setloading(false))
