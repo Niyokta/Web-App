@@ -13,35 +13,17 @@ export default function ProtectedLayout({
 
   React.useEffect(() => {
     async function authVerification() {
-      await fetch('http://3.6.34.255:3000/api/v1/auth/verifyToken', {
-        method: 'GET',
-        credentials: 'include'
+      await fetch('/api/Auth/VerifyLogin',{
+        method:'GET',
+        credentials:'include'
       })
-        .then((res) => res.json())
-        .then(async (res) => {
-          if (res.status !== "200") {
-            await fetch('http://3.6.34.255:3000/api/v1/auth/refreshToken', {
-              method: 'GET',
-              credentials: 'include'
-            })
-              .then((res) => res.json())
-              .then((res) => {
-                if (res.status !== "200") {
-                  router.replace('/Signin');
-                  return;
-                }
-                else setloading(false);
-              })
-              .catch((err) => {
-                router.replace('/Signin');
-              })
-
-          }
-          else setloading(false);
-        })
-        .catch((err) => { router.replace('/Signin');})
-
-
+      .then((res)=>res.json())
+      .then((res)=>{
+        console.log(res);
+        if(res.status!=="200") router.replace('/auth/signin')
+        else setloading(false)
+      })
+      .catch((err)=>setloading(false))
     }
     authVerification();
   }, [])
