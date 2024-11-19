@@ -40,7 +40,12 @@ export default function LoginBox() {
             .then((res) => {
                 console.log(res)
                 if (res.status == "200") return router.replace('/Dashboard')
-                else setloading(false)
+                else {
+                    setloading(false);
+                    toast({
+                        title:res.message
+                    })
+                }
             })
             .catch((err) => setloading(false))
     }

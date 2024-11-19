@@ -1,3 +1,3 @@
 import LoginBox from "./LoginBox";
-
-export {LoginBox}
+import SignupBox from "./SignupBox";
+export {LoginBox,SignupBox}

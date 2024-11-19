@@ -34,9 +34,10 @@ export async function GET(request: Request) {
             message: res.message
         })
     }
-    catch (err) {
+    catch (err:any) {
         return Response.json({
-            a: 'asdf'
+            status:"400",
+            message:err.message
         })
     }
 
