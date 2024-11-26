@@ -3,6 +3,7 @@
 import React from "react";
 import { TbLoader3 } from "react-icons/tb";
 import { useRouter } from "next/navigation";
+import { Navbar } from "@/components";
 export default function ProtectedLayout({
   children,
 }: Readonly<{
@@ -13,17 +14,17 @@ export default function ProtectedLayout({
 
   React.useEffect(() => {
     async function authVerification() {
-      await fetch('/api/Auth/VerifyLogin',{
-        method:'GET',
-        credentials:'include'
+      await fetch('/api/Auth/VerifyLogin', {
+        method: 'GET',
+        credentials: 'include'
       })
-      .then((res)=>res.json())
-      .then((res)=>{
-        console.log(res);
-        if(res.status!=="200") router.replace('/auth/signin')
-        else setloading(false)
-      })
-      .catch((err)=>setloading(false))
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          if (res.status !== "200") router.replace('/auth/signin')
+          else setloading(false)
+        })
+        .catch((err) => setloading(false))
     }
     authVerification();
   }, [])
@@ -31,7 +32,14 @@ export default function ProtectedLayout({
     loading ? (
       <TbLoader3 className="w-[50px] h-[50px] animate-spin mx-auto mt-[100px]" />
     ) : (
-      children
+      <>
+        <div className=" w-full h-screen ">
+          <div className="w-[100%] md:w-[70%] h-[100%] m-auto py-[10px]">
+            <Navbar />
+            {children}
+          </div>
+        </div>
+      </>
     )
   )
 }

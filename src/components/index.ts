@@ -1,3 +1,4 @@
 import LoginBox from "./LoginBox";
 import SignupBox from "./SignupBox";
-export {LoginBox,SignupBox}
+import Navbar from "./Navbar";
+export {LoginBox,SignupBox,Navbar}

@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { TbLoader3 } from "react-icons/tb";
 import { useRouter } from "next/navigation";
-import { Toaster } from "@/components/ui/toaster"
 import { useToast } from "@/hooks/use-toast"
 
 type creds = {
@@ -39,7 +38,7 @@ export default function LoginBox() {
         }).then((res) => res.json())
             .then((res) => {
                 console.log(res)
-                if (res.status == "200") return router.replace('/Dashboard')
+                if (res.status == "200") return router.replace('/dashboard')
                 else {
                     setloading(false);
                     toast({
