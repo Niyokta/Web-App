@@ -5,7 +5,7 @@ export async function POST(request:Request){
         const cookiestore=cookies();
         const requestbody = await request.json();
 
-        const { coursename, yearfrom, yearto, institute } = requestbody;
+        const { user,coursename, yearfrom, yearto, institute } = requestbody;
         const accessToken=cookiestore.get('accessToken')?.value
         if(!accessToken){
             return Response.json({
@@ -17,10 +17,12 @@ export async function POST(request:Request){
             method:'POST',
             credentials:'include',
             headers:{
+                'content-type':'application/json',
                 'X-Client-Type':'mobile',
                 'authorization':accessToken
             },
             body:JSON.stringify({
+                user:user,
                 cname:coursename,
                 from:yearfrom,
                 to:yearto,

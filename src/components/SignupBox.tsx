@@ -1,4 +1,4 @@
-'use client'
+
 import React from "react";
 import {
     Card,
@@ -17,6 +17,7 @@ import { useToast } from "@/hooks/use-toast"
 type creds = {
     username: string,
     email: string,
+    phone:number,
     password: string,
     cnfpassword: string
 }
@@ -60,6 +61,7 @@ export default function SignupBox() {
         })
             .then((res) => res.json())
             .then((res) => {
+                console.log("signup res - > ",res)
                 if (res.status === "200") router.replace('/auth/signin');
                 else setloading(false)
             })
