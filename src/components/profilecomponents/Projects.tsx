@@ -17,7 +17,7 @@ export default function Projects() {
                 }
             } />}
         </div>
-        <div className="w-full h-[430px]" style={{ display: part ? 'block' : 'none' }}></div>
+        <div className="w-full max-h-[430px]" style={{ display: part ? 'block' : 'none' }}></div>
     </div>
     )
 }

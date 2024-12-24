@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { KeyboardEventHandler } from "react";
 import {
     Card,
     CardContent,
@@ -67,6 +67,9 @@ export default function SignupBox() {
             })
             .catch((err) => setloading(false))
     }
+    const handlekeydown=(event:any)=>{
+        if(event.key==='Enter') handlesignup();
+    }
     return (
         loading ? (
             <div className="w-full h-screen flex items-center justify-center">
@@ -83,19 +86,19 @@ export default function SignupBox() {
                     </CardHeader>
                     <CardContent>
                         <p>Username</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Email ID</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, email: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, email: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Password</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Confirm Password</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, cnfpassword: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, cnfpassword: e.target.value }))} />
                     </CardContent>
                     <CardFooter>
                         <Button variant="default" className="mx-auto" onClick={handlesignup}>Create Account</Button>

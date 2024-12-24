@@ -10,10 +10,21 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Button } from "./ui/button";
-
+import { useToast } from "@/hooks/use-toast";
 export default function Navbar() {
+    const {toast}=useToast();
     const router = useRouter();
+    const handlesignout=async ()=>{
+        const response=await fetch('/api/Auth/SignOut',{
+            method:'GET'
+        })
+        const res=await response.json();
+        if(res.status==="200") {
+            router.replace('/auth/signin');
+            toast({title:res.message});
+            return;
+        }
+    }
     return (
             <div className="w-[100%] h-[60px] rounded-md flex justify-between px-[20px] items-center" style={{ boxShadow: "0.1px 0.1px 0.1px 1px #dee0e2" }}>
                 <ul>
@@ -25,11 +36,12 @@ export default function Navbar() {
                     <li onClick={() => router.push('/insights')} className="cursor-pointer">Insights</li>
                     <li>
                         <DropdownMenu>
-                            <DropdownMenuTrigger><CgProfile className="w-[20px] h-[20px]" /></DropdownMenuTrigger>
+                            <DropdownMenuTrigger className="items-center flex"><CgProfile className="w-[30px] h-[30px]" /></DropdownMenuTrigger>
                             <DropdownMenuContent className="mt-[30px] md:mr-[50px] md:w-[200px] bg-white">
                                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem>Profile</DropdownMenuItem>
+                                <DropdownMenuItem className="cursor-pointer" onClick={()=>router.push('/profile')}>Profile</DropdownMenuItem>
+                                <DropdownMenuItem className="cursor-pointer" onClick={()=>router.push('/dashboard')}>Dashboard</DropdownMenuItem>
                                 <DropdownMenuItem>Premium Membership</DropdownMenuItem>
                                 <DropdownMenuItem>Bid Insights</DropdownMenuItem>
                                 <DropdownMenuSeparator />
@@ -43,6 +55,8 @@ export default function Navbar() {
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem>Theme</DropdownMenuItem>
                                 <DropdownMenuItem>Settings</DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuLabel className="cursor-pointer font-medium" onClick={handlesignout}>Sign Out</DropdownMenuLabel>
                                 
                             </DropdownMenuContent>
                         </DropdownMenu>

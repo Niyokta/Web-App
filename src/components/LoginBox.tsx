@@ -1,4 +1,4 @@
-
+// 'use client'
 import React from "react";
 import {
     Card,
@@ -48,6 +48,9 @@ export default function LoginBox() {
             })
             .catch((err) => setloading(false))
     }
+    const handlekeydown=(e:any)=>{
+        if(e.key==='Enter') handlesignin();
+    }
     return (
         loading ? (
             <div className="w-full h-screen flex items-center justify-center">
@@ -64,14 +67,14 @@ export default function LoginBox() {
                     </CardHeader>
                     <CardContent>
                         <p>Username</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Password</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
                     </CardContent>
                     <CardFooter>
-                        <Button variant="default" className="mx-auto" onClick={handlesignin}>SignIn</Button>
+                        <Button variant="default"  className="mx-auto" onClick={handlesignin}>SignIn</Button>
                     </CardFooter>
                 </Card>
             </div>

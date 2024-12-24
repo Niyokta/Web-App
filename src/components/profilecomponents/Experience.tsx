@@ -13,7 +13,9 @@ import {
     DialogClose
 } from "@/components/ui/dialog"
 import { Button } from "../ui/button";
-export default function Experience({user,experience}:{user:number,experience:any[]}) {
+// import { useRouter } from "next/router";
+export default function Experience({user,experience,fnc}:{user:number,experience:any[],fnc:()=>void}) {
+    // const router=useRouter();
     const {toast}=useToast();
     const [part, setpart] = React.useState(false);
     const [newexp,setnewexp]=React.useState({
@@ -25,7 +27,11 @@ export default function Experience({user,experience}:{user:number,experience:any
         })
 
         const handleclick=async ()=>{
-            console.log(newexp)
+            if(experience.length>=5) {
+                toast({title:"Maximum Limit Reached",description:"You can not add more than 5 experiences. Delete one to add new",variant:'destructive'})
+                return;
+            }
+            // console.log(newexp)
             await fetch('/api/User/AddExperience',{
                 method:'POST',
                 credentials:'include',
@@ -40,14 +46,15 @@ export default function Experience({user,experience}:{user:number,experience:any
             })
             .then((res)=>res.json())
             .then((res)=>{
-                console.log(res)
+                // console.log(res)
+                fnc()
                 toast({title:res.message})
             })
         }
 
 
     return (
-        <div className="w-full min-h-[70px] max-h-[500px] mt-[20px] flex flex-col" style={{ boxShadow: "0.1px 0.1px 0.1px 1px #dee0e2" ,userSelect:'none'}}>
+        <div className="w-full min-h-[70px] max-h-[1200px] mt-[20px] flex flex-col" style={{ boxShadow: "0.1px 0.1px 0.1px 1px #dee0e2" ,userSelect:'none'}}>
             <div className="w-full h-[70px] flex items-center justify-between px-[20px]">
                 <p className="text-[20px] font-bold">Experience</p>
                 {!part ? <IoIosArrowDown className="w-[30px] h-[30px] cursor-pointer" onClick={
@@ -61,7 +68,7 @@ export default function Experience({user,experience}:{user:number,experience:any
                 } />}
             </div>
            
-                <div className="w-full h-[900px] p-[20px]" style={{ display: part ? 'block' : 'none' }}>
+                <div className="w-full max-h-[900px] p-[20px]" style={{ display: part ? 'block' : 'none' }}>
                                 {
                                     experience.length === 0 ? (
                                         <div className="w-[100%] h-[200px] flex items-center justify-center text-[30px] font-medium">No education Added</div>
@@ -70,7 +77,7 @@ export default function Experience({user,experience}:{user:number,experience:any
                                             {
                                                 experience.map((exp,index)=>{
                                                     return(
-                                                        <div key={index} className="w-[100%] h-[100px] flex flex-col">
+                                                        <div key={index} className="w-[100%] h-[120px] flex flex-col  hover:bg-[#f7f7f7] p-[20px] cursor-pointer">
                                                             <p className="text-[13px] font-medium">{exp.title}</p>
                                                             <p className="text-[25px] font-bold">{exp.company}</p>
                                                             <div className="flex text-[10px] font-light"><p>{exp.yearFrom} - </p> <p>{exp.yearTo}</p></div>
@@ -82,7 +89,7 @@ export default function Experience({user,experience}:{user:number,experience:any
                                     )
                                 }
                                 <Dialog>
-                                    <DialogTrigger className="w-[100%] mx-auto h-[50px] flex justify-end px-[20px]"><span><Button style={{display:experience.length === 3 ? 'none':'block'}}>Add Experience</Button></span></DialogTrigger>
+                                    <DialogTrigger className="w-[100%] mx-auto h-[40px] flex justify-end px-[20px] mt-[20px]"><div className="w-[150px] h-[100%] shadow-sm shadow-[#b2b2b2] justify-center" style={{display:experience.length === 3 ? 'none':'block'}}><p className="mx-auto pt-[8px] font-medium">Add Experience</p></div></DialogTrigger>
                                     <DialogContent className="bg-white">
                                         <DialogHeader>
                                             <DialogTitle>Add Experience</DialogTitle>
@@ -96,7 +103,7 @@ export default function Experience({user,experience}:{user:number,experience:any
                                         </DialogHeader>
                                         <DialogFooter>
                                             <DialogClose asChild>
-                                                <span><Button type="submit" className="mx-auto w-[100%]" onClick={handleclick}>Add Experience</Button></span>
+                                                <Button className="mx-auto w-[100%]" onClick={handleclick}>Add Experience</Button>
                                             </DialogClose>
                                         </DialogFooter>
                                     </DialogContent>
