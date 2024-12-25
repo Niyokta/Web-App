@@ -1,4 +1,4 @@
-// 'use client'
+
 import React from "react";
 import {
     Card,
@@ -19,7 +19,7 @@ type creds = {
     password: string
 }
 export default function LoginBox() {
-    const { toast } = useToast()
+    const { toast } = useToast();
     const router = useRouter();
     const [usercreds, setusercreds] = React.useState<creds>({
         username: "",

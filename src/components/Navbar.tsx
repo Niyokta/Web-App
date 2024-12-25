@@ -26,7 +26,7 @@ export default function Navbar() {
         }
     }
     return (
-            <div className="w-[100%] h-[60px] rounded-md flex justify-between px-[20px] items-center" style={{ boxShadow: "0.1px 0.1px 0.1px 1px #dee0e2" }}>
+            <div className="w-[100%] h-[60px] rounded-md flex justify-between px-[20px] items-center" style={{ boxShadow: "0.1px 0.1px 0.1px 1px #dee0e2",userSelect:'none' }}>
                 <ul>
                     <li className="font-bold md:text-[25px]">Niyokta</li>
                 </ul>
@@ -36,7 +36,7 @@ export default function Navbar() {
                     <li onClick={() => router.push('/insights')} className="cursor-pointer">Insights</li>
                     <li>
                         <DropdownMenu>
-                            <DropdownMenuTrigger className="items-center flex"><CgProfile className="w-[30px] h-[30px]" /></DropdownMenuTrigger>
+                            <DropdownMenuTrigger className="items-center flex" ><CgProfile className="w-[30px] h-[30px]"/></DropdownMenuTrigger>
                             <DropdownMenuContent className="mt-[30px] md:mr-[50px] md:w-[200px] bg-white">
                                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
