@@ -1,5 +1,5 @@
-'use client'
-import React from "react";
+
+import React, { KeyboardEventHandler } from "react";
 import {
     Card,
     CardContent,
@@ -17,6 +17,7 @@ import { useToast } from "@/hooks/use-toast"
 type creds = {
     username: string,
     email: string,
+    phone:number,
     password: string,
     cnfpassword: string
 }
@@ -43,6 +44,7 @@ export default function SignupBox() {
             return toast({ title: "Password & Confirm Password should match" })
         }
 
+        
 
 
         await fetch('/api/Auth/Signup', {
@@ -59,11 +61,14 @@ export default function SignupBox() {
         })
             .then((res) => res.json())
             .then((res) => {
-                console.log(res)
+                console.log("signup res - > ",res)
                 if (res.status === "200") router.replace('/auth/signin');
                 else setloading(false)
             })
             .catch((err) => setloading(false))
+    }
+    const handlekeydown=(event:any)=>{
+        if(event.key==='Enter') handlesignup();
     }
     return (
         loading ? (
@@ -81,19 +86,19 @@ export default function SignupBox() {
                     </CardHeader>
                     <CardContent>
                         <p>Username</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Email ID</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, email: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, email: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Password</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Confirm Password</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, cnfpassword: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, cnfpassword: e.target.value }))} />
                     </CardContent>
                     <CardFooter>
                         <Button variant="default" className="mx-auto" onClick={handlesignup}>Create Account</Button>

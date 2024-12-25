@@ -1,4 +1,4 @@
-'use client'
+
 import React from "react";
 import {
     Card,
@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { TbLoader3 } from "react-icons/tb";
 import { useRouter } from "next/navigation";
-import { Toaster } from "@/components/ui/toaster"
 import { useToast } from "@/hooks/use-toast"
 
 type creds = {
@@ -20,7 +19,7 @@ type creds = {
     password: string
 }
 export default function LoginBox() {
-    const { toast } = useToast()
+    const { toast } = useToast();
     const router = useRouter();
     const [usercreds, setusercreds] = React.useState<creds>({
         username: "",
@@ -39,7 +38,7 @@ export default function LoginBox() {
         }).then((res) => res.json())
             .then((res) => {
                 console.log(res)
-                if (res.status == "200") return router.replace('/Dashboard')
+                if (res.status == "200") return router.replace('/dashboard')
                 else {
                     setloading(false);
                     toast({
@@ -48,6 +47,9 @@ export default function LoginBox() {
                 }
             })
             .catch((err) => setloading(false))
+    }
+    const handlekeydown=(e:any)=>{
+        if(e.key==='Enter') handlesignin();
     }
     return (
         loading ? (
@@ -65,14 +67,14 @@ export default function LoginBox() {
                     </CardHeader>
                     <CardContent>
                         <p>Username</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Password</p>
-                        <Input onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
                     </CardContent>
                     <CardFooter>
-                        <Button variant="default" className="mx-auto" onClick={handlesignin}>SignIn</Button>
+                        <Button variant="default"  className="mx-auto" onClick={handlesignin}>SignIn</Button>
                     </CardFooter>
                 </Card>
             </div>
