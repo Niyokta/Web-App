@@ -89,7 +89,7 @@ export default function Education({ user, education }: { user: number, education
                                             </div>
                                             <Dialog>
                                                 <DialogTrigger className=""><MdDelete className="w-[20px] h-[20px] hover:animate-ping" style={{ color: '838383' }} /></DialogTrigger>
-                                                <DialogContent className="bg-white">
+                                                <DialogContent className="bg-white w-[500px]">
                                                     <DialogHeader>
                                                         <DialogTitle>Delete Education</DialogTitle>
                                                         <DialogDescription className="h-[150px] flex flex-col ">
@@ -117,7 +117,7 @@ export default function Education({ user, education }: { user: number, education
                 }
                 <Dialog>
                     <DialogTrigger className="w-[100%] mx-auto h-[40px] flex justify-end px-[20px] mt-[20px]"><div className="w-[150px] h-[100%] shadow-sm shadow-[#b2b2b2] justify-center"><p className="mx-auto pt-[8px] font-medium">Add Education</p></div></DialogTrigger>
-                    <DialogContent className="bg-white">
+                    <DialogContent className="bg-white w-[500px]">
                         <DialogHeader>
                             <DialogTitle>Add Education</DialogTitle>
                             <DialogDescription className="h-[250px] flex flex-col items-center justify-around">

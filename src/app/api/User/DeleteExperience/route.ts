@@ -5,7 +5,6 @@ export async function POST(request:Request){
         const cookiestore=cookies();
         const requestBody=await request.json();
         const {experienceId}= requestBody;
-        console.log("experience id is : ",experienceId)
         const accessToken=cookiestore.get('accessToken')?.value;
         if(!accessToken){
             return Response.json({status:"400",message:"You are not Logged In"})
