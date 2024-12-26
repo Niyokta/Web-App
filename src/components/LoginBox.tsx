@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button"
 import { TbLoader3 } from "react-icons/tb";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast"
+import Link from "next/link";
 
 type creds = {
     username: string,
@@ -67,14 +68,15 @@ export default function LoginBox() {
                     </CardHeader>
                     <CardContent>
                         <p>Username</p>
-                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
+                        <Input  onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Password</p>
-                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} type='password' onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
                     </CardContent>
                     <CardFooter>
                         <Button variant="default"  className="mx-auto" onClick={handlesignin}>SignIn</Button>
+                     <p className='text-center mt-2'> Don't have an account? <Link href='/auth/signup'>Register</Link></p>
                     </CardFooter>
                 </Card>
             </div>
