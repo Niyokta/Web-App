@@ -80,7 +80,7 @@ export default function SignupBox() {
             </div>
         ) : (
             <div className="w-full h-screen flex items-center justify-center">
-                <Card className="w-[80%] md:w-[400px] h-[500px]">
+                <Card className="w-[80%] md:w-[400px] h-[520px]">
                     <CardHeader>
                         <CardTitle>Create Account</CardTitle>
                         <CardDescription>Enter credentials to create a new account</CardDescription>
@@ -101,9 +101,9 @@ export default function SignupBox() {
                         <p>Confirm Password</p>
                         <Input type='password' onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, cnfpassword: e.target.value }))} />
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="flex flex-col">
                         <Button variant="default" className="mx-auto" onClick={handlesignup}>Create Account</Button>
-                    <p className='text-center mt-2'> Already, have an account? <Link href='/auth/signin'>Login</Link></p>
+                        <p className='text-center mt-[10px] text-[12px] underline'> Already, have an account? <Link href='/auth/signin'>Login</Link></p>
                     </CardFooter>
 
                 </Card>

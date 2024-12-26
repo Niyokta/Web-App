@@ -74,9 +74,9 @@ export default function LoginBox() {
                         <p>Password</p>
                         <Input onKeyDown={handlekeydown} type='password' onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="flex flex-col">
                         <Button variant="default"  className="mx-auto" onClick={handlesignin}>SignIn</Button>
-                     <p className='text-center mt-2'> Don't have an account? <Link href='/auth/signup'>Register</Link></p>
+                        <p className='text-center text-[12px] mt-[10px] underline'> Don't have an account? <Link href='/auth/signup'>Register</Link></p>
                     </CardFooter>
                 </Card>
             </div>
