@@ -96,7 +96,7 @@ export default function Experience({ user, experience, fnc }: { user: number, ex
                                             </div>
                                             <Dialog>
                                                 <DialogTrigger className=""><MdDelete className="w-[20px] h-[20px] hover:animate-ping" style={{ color: '838383' }} /></DialogTrigger>
-                                                <DialogContent className="bg-white">
+                                                <DialogContent className="bg-white w-[500px]">
                                                     <DialogHeader>
                                                         <DialogTitle>Delete Education</DialogTitle>
                                                         <DialogDescription className="h-[150px] flex flex-col ">
@@ -124,7 +124,7 @@ export default function Experience({ user, experience, fnc }: { user: number, ex
                 }
                 <Dialog>
                     <DialogTrigger className="w-[100%] mx-auto h-[40px] flex justify-end px-[20px] mt-[20px]"><div className="w-[150px] h-[100%] shadow-sm shadow-[#b2b2b2] justify-center" style={{ display: experience.length === 3 ? 'none' : 'block' }}><p className="mx-auto pt-[8px] font-medium">Add Experience</p></div></DialogTrigger>
-                    <DialogContent className="bg-white">
+                    <DialogContent className="bg-white w-[500px]">
                         <DialogHeader>
                             <DialogTitle>Add Experience</DialogTitle>
                             <DialogDescription className="h-[250px] flex flex-col items-center justify-around">

@@ -14,7 +14,8 @@ export default function profile() {
         email: '',
         phone: '',
         educations: [],
-        experiences: []
+        experiences: [],
+        projects:[],
     })
     const fetchdata = async () => {
         await fetch('/api/User', {
@@ -23,9 +24,9 @@ export default function profile() {
         })
             .then((res => res.json()))
             .then((res) => {
-                // console.log("get user res- >> ",res)
+                console.log("get user res- >> ",res)
                 if (res.status == "200") {
-                    setuser(() => ({ ...user,userid:res.user.id, username: res.user.username, email: res.user.email, phone: res.user.phoneNumber,educations:res.user.educations,experiences:res.user.experiences }))
+                    setuser(() => ({ ...user,userid:res.user.id, username: res.user.username, email: res.user.email, phone: res.user.phoneNumber,educations:res.user.educations,experiences:res.user.experiences,projects:res.user.projects }))
                     setloading(false)
                 }
                 else toast({ title: res.message })
@@ -48,9 +49,9 @@ export default function profile() {
         ) : (
             <>
                 <PersonalInfo userprop={user}/>
+                <Projects username={user.username} user={user.userid} projects={user.projects}/>
                 <Education user={user.userid} education={user.educations}/>
                 <Experience user={user.userid} experience={user.experiences} fnc={handlerefresh}/>
-                <Projects/>
             </>
         )
     )
