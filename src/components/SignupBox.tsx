@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button"
 import { TbLoader3 } from "react-icons/tb";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast"
+import Link from "next/link";
 
 type creds = {
     username: string,
@@ -94,15 +95,17 @@ export default function SignupBox() {
                     </CardContent>
                     <CardContent>
                         <p>Password</p>
-                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
+                        <Input type='password' onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Confirm Password</p>
-                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, cnfpassword: e.target.value }))} />
+                        <Input type='password' onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, cnfpassword: e.target.value }))} />
                     </CardContent>
                     <CardFooter>
                         <Button variant="default" className="mx-auto" onClick={handlesignup}>Create Account</Button>
+                    <p className='text-center mt-2'> Already, have an account? <Link href='/auth/signin'>Login</Link></p>
                     </CardFooter>
+
                 </Card>
             </div>
         )
