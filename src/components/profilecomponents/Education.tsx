@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { IoIosArrowDown, IoIosArrowUp, MdDelete } from "../general/reacticons"
 import { Button } from "../ui/button";

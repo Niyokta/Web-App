@@ -9,7 +9,7 @@ const userSlice = createSlice({
     phoneNumber:"",
     education:[{id:0,courseName:"",yearFrom:"",yearTo:"",institute:"",userId:0}],
     projects:[{project_id:0,title:"",description:"",max_budget:"",min_budget:"",created_at:"",skills:[]}],
-    bids:[],
+    bids:[{bid_id:0,freelancer_id:0,project_id:0,bidding_price:"",freelancer_name:"",proposal:"",completion_time:"",status:"",submitted_at:"",client_rating:"",is_active:""}],
     experience:[{id:0,title:"",yearFrom:"",yearTo:"",company:"",userId:0,description:""}]
   },
   reducers: {
