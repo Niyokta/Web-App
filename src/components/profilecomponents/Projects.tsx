@@ -1,13 +1,11 @@
+'use client'
 import React from "react";
-import { IoIosArrowDown } from "react-icons/io";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { IoIosArrowUp } from "react-icons/io";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label"
-import { ImCross } from "react-icons/im";
 import { useToast } from "@/hooks/use-toast";
-import { MdDelete } from "react-icons/md";
+import {MdDelete,IoIosArrowUp,IoIosArrowDown,ImCross} from "../general/reacticons"
 import {
     Dialog,
     DialogContent,
@@ -18,8 +16,10 @@ import {
     DialogTrigger,
     DialogClose
 } from "@/components/ui/dialog"
-
-export default function Projects({ user, username, projects }: { user: number, username: string, projects: any[] }) {
+import { useAppSelector,useAppDispatch } from "@/lib/reduxHooks";
+import { updateUser } from "@/lib/features/userdetails";
+export default function Projects() {
+    const dispatch=useAppDispatch()
     const { toast } = useToast();
     const [newproject, setnewproject] = React.useState({
         title: '',
@@ -32,19 +32,20 @@ export default function Projects({ user, username, projects }: { user: number, u
     const [category, setcategory] = React.useState<string>('');
     const [categories, setcategories] = React.useState<string[]>([]);
     const [part, setpart] = React.useState(false);
-
+    const userid=useAppSelector(state=>state.user.userid)
+    const clientname=useAppSelector(state=>state.user.userName)
     const createnewproject = async () => {
         fetch('/api/User/AddProject', {
             method: 'POST',
             body: JSON.stringify({
-                user: user,
+                user: userid,
                 title: newproject.title,
                 description: newproject.description,
                 maxprice: newproject.maxbudget,
                 skills: skills,
                 categories: categories,
                 minprice: newproject.minbudget,
-                client_name: username
+                client_name: clientname
             })
         })
             .then((res) => res.json())
@@ -65,7 +66,6 @@ export default function Projects({ user, username, projects }: { user: number, u
             toast({title:res.message,description:"Please refresh the page"});
         })
     }
-    console.log(projects)
     return (
         <div className="w-full min-h-[70px] mt-[20px] flex flex-col" style={{ boxShadow: "0.1px 0.1px 0.1px 1px #dee0e2" }}>
             <div className="w-full h-[70px] flex items-center justify-between px-[20px]">
@@ -82,12 +82,12 @@ export default function Projects({ user, username, projects }: { user: number, u
             </div>
             <div className="w-full  p-[20px]" style={{ display: part ? 'block' : 'none' }}>
                 {
-                    projects.length === 0 ? (
+                    useAppSelector(state=>state.user.projects).length === 0 ? (
                         <div className="w-full h-[100px] flex items-center justify-center text-[30px] font-bold">
                             <p>No Projects to Show</p>
                         </div>
                     ) : (
-                        projects.map((project, index) => {
+                        useAppSelector(state=>state.user.projects).map((project, index) => {
                             return (
                                 <div className="w-[100%] h-[100px] hover:bg-[#f7f7f7] flex items-center p-[20px]" key={index}>
                                     <div className="w-[90%]">

@@ -1,8 +1,10 @@
+'use client'
 import React from "react";
-import { IoIosArrowDown, IoIosArrowUp } from "../reacticons";
+import { IoIosArrowDown, IoIosArrowUp } from "../general/reacticons";
 import { Input } from "../ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { MdDelete } from "react-icons/md";
+import { addexperience,removeexperience } from "@/lib/features/userdetails";
 import {
     Dialog,
     DialogContent,
@@ -14,9 +16,10 @@ import {
     DialogClose
 } from "@/components/ui/dialog"
 import { Button } from "../ui/button";
-// import { useRouter } from "next/router";
-export default function Experience({ user, experience, fnc }: { user: number, experience: any[], fnc: () => void }) {
-    // const router=useRouter();
+import { useAppSelector,useAppDispatch } from "@/lib/reduxHooks";
+
+export default function Experience() {
+    const dispatch=useAppDispatch();
     const { toast } = useToast();
     const [part, setpart] = React.useState(false);
     const [newexp, setnewexp] = React.useState({
@@ -26,9 +29,10 @@ export default function Experience({ user, experience, fnc }: { user: number, ex
         to: '',
         description: ''
     })
-
+    const userid=useAppSelector(state=>state.user.userid)
+    const experiences=useAppSelector((state=>state.user.experience))
     const handleclick = async () => {
-        if (experience.length >= 5) {
+        if (experiences.length >= 5) {
             toast({ title: "Maximum Limit Reached", description: "You can not add more than 5 experiences. Delete one to add new", variant: 'destructive' })
             return;
         }
@@ -37,7 +41,7 @@ export default function Experience({ user, experience, fnc }: { user: number, ex
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({
-                user: user,
+                user: userid,
                 title: newexp.title,
                 company: newexp.company,
                 from: newexp.from,
@@ -47,9 +51,11 @@ export default function Experience({ user, experience, fnc }: { user: number, ex
         })
             .then((res) => res.json())
             .then((res) => {
-                // console.log(res)
-                fnc()
-                toast({ title: res.message,description:"Please refresh the page" })
+                if(res.status==="200"){
+                    dispatch(addexperience({userId:userid,company:newexp.company,title:newexp.title,yearfrom:newexp.from,yearto:newexp.to,description:newexp.description}))
+                }
+               
+                toast({ title: res.message })
             })
     }
     const handledelete=async(id:number)=>{
@@ -60,7 +66,7 @@ export default function Experience({ user, experience, fnc }: { user: number, ex
             })
         })
         const res=await response.json();
-        
+        dispatch(removeexperience(id))
         toast({title:"Record Deleted Successfully",description:"Please refresh the page"})
     }
 
@@ -81,12 +87,12 @@ export default function Experience({ user, experience, fnc }: { user: number, ex
 
             <div className="w-full max-h-[900px] p-[20px]" style={{ display: part ? 'block' : 'none' }}>
                 {
-                    experience.length === 0 ? (
-                        <div className="w-[100%] h-[200px] flex items-center justify-center text-[30px] font-medium">No education Added</div>
+                    experiences.length === 0 ? (
+                        <div className="w-[100%] h-[200px] flex items-center justify-center text-[30px] font-medium">No experience Added</div>
                     ) : (
                         <div>
                             {
-                                experience.map((exp, index) => {
+                                experiences.map((exp, index) => {
                                     return (
                                         <div key={index} className="w-[100%] h-[120px] flex items-center  hover:bg-[#f7f7f7] p-[20px] cursor-pointer">
                                             <div className="w-[90%] h-[100%] flex flex-col" style={{}}>
@@ -123,7 +129,7 @@ export default function Experience({ user, experience, fnc }: { user: number, ex
                     )
                 }
                 <Dialog>
-                    <DialogTrigger className="w-[100%] mx-auto h-[40px] flex justify-end px-[20px] mt-[20px]"><div className="w-[150px] h-[100%] shadow-sm shadow-[#b2b2b2] justify-center" style={{ display: experience.length === 3 ? 'none' : 'block' }}><p className="mx-auto pt-[8px] font-medium">Add Experience</p></div></DialogTrigger>
+                    <DialogTrigger className="w-[100%] mx-auto h-[40px] flex justify-end px-[20px] mt-[20px]"><div className="w-[150px] h-[100%] shadow-sm shadow-[#b2b2b2] justify-center"><p className="mx-auto pt-[8px] font-medium">Add Experience</p></div></DialogTrigger>
                     <DialogContent className="bg-white w-[500px]">
                         <DialogHeader>
                             <DialogTitle>Add Experience</DialogTitle>

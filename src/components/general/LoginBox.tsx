@@ -1,4 +1,4 @@
-
+'use client'
 import React from "react";
 import {
     Card,
@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { TbLoader3 } from "react-icons/tb";
+import { TbLoader3 } from "../general/reacticons";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link";
