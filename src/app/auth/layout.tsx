@@ -1,7 +1,6 @@
 'use client'
-
 import React from "react";
-import { TbLoader3 } from "react-icons/tb";
+import { TbLoader3 } from "@/components/general/reacticons";
 import { useRouter } from "next/navigation";
 export default function AuthLayout({
     children,

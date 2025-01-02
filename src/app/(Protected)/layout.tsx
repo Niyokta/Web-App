@@ -1,9 +1,11 @@
 'use client'
 
 import React from "react";
-import { TbLoader3 } from "react-icons/tb";
+import { TbLoader3 } from "@/components/general/reacticons";
 import { useRouter } from "next/navigation";
 import { Navbar } from "@/components";
+import StoreProvider from "./StoreProvider";
+import UserDataFetching from "@/components/general/UserDataFetching";
 export default function ProtectedLayout({
   children,
 }: Readonly<{
@@ -33,12 +35,15 @@ export default function ProtectedLayout({
       <TbLoader3 className="w-[50px] h-[50px] animate-spin mx-auto mt-[100px]" />
     ) : (
       <>
-        <div className=" w-full h-screen ">
-          <div className="w-[100%] md:w-[70%] h-[100%] m-auto py-[10px]">
-            <Navbar />
-            {children}
+        <StoreProvider>
+          <div className=" w-full h-screen ">
+            <div className="w-[100%] md:w-[70%] h-[100%] m-auto py-[10px]">
+              <Navbar />
+              <UserDataFetching/>
+              {children}
+            </div>
           </div>
-        </div>
+        </StoreProvider>
       </>
     )
   )

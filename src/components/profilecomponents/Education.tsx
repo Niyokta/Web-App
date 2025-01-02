@@ -1,10 +1,8 @@
 import React from "react";
-import { IoIosArrowDown, IoIosArrowUp } from "../reacticons"
+import { IoIosArrowDown, IoIosArrowUp, MdDelete } from "../general/reacticons"
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { MdDelete } from "react-icons/md";
-{/* <MdDelete /> */ }
 import {
     Dialog,
     DialogContent,
@@ -15,8 +13,10 @@ import {
     DialogTrigger,
     DialogClose
 } from "@/components/ui/dialog"
-
-export default function Education({ user, education }: { user: number, education: any[] }) {
+import { useAppSelector,useAppDispatch } from "@/lib/reduxHooks";
+import { addeducation, removeeducation } from "@/lib/features/userdetails";
+export default function Education() {
+    const dispatch=useAppDispatch()
     const { toast } = useToast();
     const [part, setpart] = React.useState(false);
     const [newedu, setnewedu] = React.useState({
@@ -25,8 +25,10 @@ export default function Education({ user, education }: { user: number, education
         startyear: '',
         endyear: ''
     })
+    const userid=useAppSelector(state=>state.user.userid)
+    const educations = useAppSelector(state => state.user.education);
     const handleclick = async () => {
-        if (education.length >= 5) {
+        if (educations.length >= 5) {
             toast({ title: "Maximum Limit Reached", description: "Please remove one to add new", variant: 'destructive' })
         }
         // console.log(newedu)
@@ -34,7 +36,7 @@ export default function Education({ user, education }: { user: number, education
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({
-                user: user,
+                user: userid,
                 coursename: newedu.cname,
                 yearfrom: newedu.startyear,
                 yearto: newedu.endyear,
@@ -43,20 +45,22 @@ export default function Education({ user, education }: { user: number, education
         })
             .then((res) => res.json())
             .then((res) => {
-                // console.log(res)
-                toast({ title: res.message,description:"Please refresh the page"})
+                if(res.status==="200"){
+                    dispatch(addeducation({useid:userid,coursename:newedu.cname,yearfrom:newedu.startyear,yearto:newedu.startyear,institute:newedu.institute}))
+                }
+                toast({ title: res.message, description: "Please refresh the page" })
             })
     }
-    const handledelete=async(id:number)=>{
-        const response=await fetch('/api/User/DeleteEducation',{
-            method:'POST',
-            body:JSON.stringify({
-                educationId:id
+    const handledelete = async (id: number) => {
+        const response = await fetch('/api/User/DeleteEducation', {
+            method: 'POST',
+            body: JSON.stringify({
+                educationId: id
             })
         })
-        const res=await response.json();
-        console.log(res)
-        toast({title:"Record Deleted Successfully",description:"Please refresh the page"})
+        const res = await response.json();
+        dispatch(removeeducation(id))
+        toast({ title: "Record Deleted Successfully", description: "Please refresh the page" })
     }
     return (
         <div className="w-full min-h-[70px] max-h-[900px] mt-[20px] flex flex-col" style={{ boxShadow: "0.1px 0.1px 0.1px 1px #dee0e2", userSelect: 'none' }}>
@@ -74,15 +78,15 @@ export default function Education({ user, education }: { user: number, education
             </div>
             <div className="w-full max-h-[900px] p-[20px]" style={{ display: part ? 'block' : 'none' }}>
                 {
-                    education.length === 0 ? (
+                     educations.length === 0 ? (
                         <div className="w-[100%] h-[200px] flex items-center justify-center text-[30px] font-medium">No education Added</div>
                     ) : (
                         <div>
                             {
-                                education.map((edu, index) => {
+                                educations.map((edu, index) => {
                                     return (
                                         <div key={index} className="w-[100%] h-[120px] flex items-center  hover:bg-[#f7f7f7] p-[20px] cursor-pointer">
-                                            <div  className="w-[90%] h-[100%] flex flex-col" style={{}}>
+                                            <div className="w-[90%] h-[100%] flex flex-col" style={{}}>
                                                 <p className="text-[13px] font-medium">{edu.courseName}</p>
                                                 <p className="text-[25px] font-bold">{edu.institute}</p>
                                                 <div className="flex text-[10px] font-light"><p>{edu.yearFrom} - </p> <p>{edu.yearTo}</p></div>
@@ -103,7 +107,7 @@ export default function Education({ user, education }: { user: number, education
                                                     </DialogHeader>
                                                     <DialogFooter>
                                                         <DialogClose asChild>
-                                                            <Button type="submit" className="mx-auto w-[100%]" onClick={()=>{handledelete(edu.id)}}>Delete Record</Button>
+                                                            <Button type="submit" className="mx-auto w-[100%]" onClick={() => { handledelete(edu.id) }}>Delete Record</Button>
                                                         </DialogClose>
                                                     </DialogFooter>
                                                 </DialogContent>
