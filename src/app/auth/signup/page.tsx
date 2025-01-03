@@ -3,7 +3,7 @@ import React from "react";
 import { SignupBox } from "@/components";
 export default function Signup(){
     return(
-        <div>
+        <div >
             <SignupBox/>
         </div>
     )

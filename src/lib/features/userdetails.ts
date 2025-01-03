@@ -7,6 +7,13 @@ const userSlice = createSlice({
     userName:"",
     email:"",
     phoneNumber:"",
+    country:"",
+    birth_date:"",
+    working_hours:"",
+    freelancer_rating:0,
+    linkedin:"",
+    github:"",
+    x:"",
     education:[{id:0,courseName:"",yearFrom:"",yearTo:"",institute:"",userId:0}],
     projects:[{project_id:0,title:"",description:"",max_budget:"",min_budget:"",created_at:"",skills:[]}],
     bids:[{bid_id:0,freelancer_id:0,project_id:0,bidding_price:"",freelancer_name:"",proposal:"",completion_time:"",status:"",submitted_at:"",client_rating:"",is_active:""}],
@@ -22,7 +29,14 @@ const userSlice = createSlice({
         state.education=user.education,
         state.experience=user.experience,
         state.projects=user.projects,
-        state.bids=user.bids
+        state.bids=user.bids,
+        state.working_hours=user.working_hours,
+        state.freelancer_rating=user.freelancer_rating,
+        state.birth_date=user.birth_date,
+        state.linkedin=user.linkedin,
+        state.github=user.github,
+        state.x=user.x,
+        state.country=user.country
     },
     addeducation:(state,action)=>{
         const newedu=action.payload

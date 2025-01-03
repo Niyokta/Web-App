@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useRef } from "react";
 import {
     Card,
     CardContent,
@@ -20,6 +20,7 @@ type creds = {
     password: string
 }
 export default function LoginBox() {
+    const passwordRef=useRef<HTMLInputElement | null>(null);
     const { toast } = useToast();
     const router = useRouter();
     const [usercreds, setusercreds] = React.useState<creds>({
@@ -47,10 +48,16 @@ export default function LoginBox() {
                     })
                 }
             })
-            .catch((err) => setloading(false))
+            .catch((err) =>{
+                setloading(false)
+                toast({title:err.message})
+            })
     }
-    const handlekeydown=(e:any)=>{
+    const handlekeydown=(e:React.KeyboardEvent<HTMLInputElement>)=>{
         if(e.key==='Enter') handlesignin();
+    }
+    const handleusernamekeydown=(e:React.KeyboardEvent<HTMLInputElement>)=>{
+        if(e.key==="Enter") passwordRef.current?.focus();
     }
     return (
         loading ? (
@@ -68,15 +75,15 @@ export default function LoginBox() {
                     </CardHeader>
                     <CardContent>
                         <p>Username</p>
-                        <Input  onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
+                        <Input  onKeyDown={handleusernamekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Password</p>
-                        <Input onKeyDown={handlekeydown} type='password' onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} type='password' ref={passwordRef} onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
                     </CardContent>
                     <CardFooter className="flex flex-col">
                         <Button variant="default"  className="mx-auto" onClick={handlesignin}>SignIn</Button>
-                        <p className='text-center text-[12px] mt-[10px] underline'> Don't have an account? <Link href='/auth/signup'>Register</Link></p>
+                        <p className='text-center text-[12px] mt-[10px] underline'> Don't have an account? <Link href='/auth/signup' onClick={()=>setloading(true)}>Register</Link></p>
                     </CardFooter>
                 </Card>
             </div>

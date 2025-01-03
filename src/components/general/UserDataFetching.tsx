@@ -44,7 +44,14 @@ export default function UserDataFetching() {
                     experience:res.user.experiences,
                     email:res.user.email,
                     projects:res.user.projects,
-                    bids:res.user.bids
+                    bids:res.user.bids,
+                    working_hours:res.user.working_hours,
+                    birth_date:res.user.birth_date,
+                    freelancer_rating:res.user.freelancer_rating,
+                    linkedin:res.user.linkedin,
+                    github:res.user.github,
+                    x:res.user.x,
+                    country:res.user.country
                 }
                 localStorage.setItem('UserInfo',JSON.stringify(payload))
                 dispatch(updateUser(payload));

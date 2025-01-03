@@ -34,6 +34,7 @@ export default function Projects() {
     const [part, setpart] = React.useState(false);
     const userid=useAppSelector(state=>state.user.userid)
     const clientname=useAppSelector(state=>state.user.userName)
+    const clientcountry=useAppSelector(state=>state.user.country);
     const createnewproject = async () => {
         fetch('/api/User/AddProject', {
             method: 'POST',
@@ -45,7 +46,8 @@ export default function Projects() {
                 skills: skills,
                 categories: categories,
                 minprice: newproject.minbudget,
-                client_name: clientname
+                client_name: clientname,
+                client_country:clientcountry
             })
         })
             .then((res) => res.json())

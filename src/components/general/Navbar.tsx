@@ -11,10 +11,11 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useToast } from "@/hooks/use-toast";
-import { useAppSelector } from "@/lib/reduxHooks";
+// import { useAppSelector } from "@/lib/reduxHooks";
 export default function Navbar() {
     const {toast}=useToast();
     const router = useRouter();
+    // const username=useAppSelector(state=>state.user.userName)
     const handlesignout=async ()=>{
         const response=await fetch('/api/Auth/SignOut',{
             method:'GET'
@@ -26,7 +27,7 @@ export default function Navbar() {
             return;
         }
     }
-    const username=useAppSelector(state=>state.user.userName)
+    
     return (
             <div className="w-[100%] h-[60px] rounded-md flex justify-between px-[20px] items-center" style={{ boxShadow: "0.1px 0.1px 0.1px 1px #dee0e2",userSelect:'none' }}>
                 <ul>
@@ -45,7 +46,7 @@ export default function Navbar() {
                                 <DropdownMenuItem className="cursor-pointer" onClick={()=>router.push('/profile')}>Profile</DropdownMenuItem>
                                 <DropdownMenuItem className="cursor-pointer" onClick={()=>router.push('/dashboard')}>Dashboard</DropdownMenuItem>
                                 <DropdownMenuItem>Premium Membership</DropdownMenuItem>
-                                <DropdownMenuItem className="cursor-pointer" onClick={()=>router.push(`/${username}/bid-insights`)}>Bid Insights</DropdownMenuItem>
+                                <DropdownMenuItem className="cursor-pointer" >Bid Insights</DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuLabel>Accounts</DropdownMenuLabel>
                                 <DropdownMenuSeparator />

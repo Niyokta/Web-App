@@ -1,5 +1,5 @@
 import LoginBox from "./general/LoginBox";
-import SignupBox from "./general/SignupBox";
+import SignupBox from "./general/SignUpComps/SignupBox";
 import Navbar from "./general/Navbar";
 import PersonalInfo from "./profilecomponents/PersonallInfo";
 import Education from "./profilecomponents/Education";
