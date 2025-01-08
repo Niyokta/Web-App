@@ -7,6 +7,7 @@ import Experience from "./profilecomponents/Experience";
 import BidStats from "./BidInsight/BidStats";
 import AllBids from "./BidInsight/AllBids";
 import Projects from "./profilecomponents/Projects";
+import ListProjects from "./general/ListProjects";
 export {LoginBox,
     SignupBox,
     Navbar,
@@ -15,5 +16,6 @@ export {LoginBox,
     Experience,
     Education,
     AllBids,
-    BidStats
+    BidStats,
+    ListProjects
 };

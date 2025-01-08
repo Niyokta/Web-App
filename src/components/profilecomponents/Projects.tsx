@@ -16,10 +16,12 @@ import {
     DialogTrigger,
     DialogClose
 } from "@/components/ui/dialog"
-import { useAppSelector,useAppDispatch } from "@/lib/reduxHooks";
-import { updateUser } from "@/lib/features/userdetails";
+import { useAppSelector } from "@/lib/reduxHooks";
 export default function Projects() {
-    const dispatch=useAppDispatch()
+    const userid=useAppSelector(state=>state.user.userid)
+    const clientname=useAppSelector(state=>state.user.userName)
+    const clientcountry=useAppSelector(state=>state.user.country);
+    const projects=useAppSelector(state=>state.user.projects)
     const { toast } = useToast();
     const [newproject, setnewproject] = React.useState({
         title: '',
@@ -32,9 +34,6 @@ export default function Projects() {
     const [category, setcategory] = React.useState<string>('');
     const [categories, setcategories] = React.useState<string[]>([]);
     const [part, setpart] = React.useState(false);
-    const userid=useAppSelector(state=>state.user.userid)
-    const clientname=useAppSelector(state=>state.user.userName)
-    const clientcountry=useAppSelector(state=>state.user.country);
     const createnewproject = async () => {
         fetch('/api/User/AddProject', {
             method: 'POST',
@@ -84,12 +83,12 @@ export default function Projects() {
             </div>
             <div className="w-full  p-[20px]" style={{ display: part ? 'block' : 'none' }}>
                 {
-                    useAppSelector(state=>state.user.projects).length === 0 ? (
+                    projects.length === 0 ? (
                         <div className="w-full h-[100px] flex items-center justify-center text-[30px] font-bold">
                             <p>No Projects to Show</p>
                         </div>
                     ) : (
-                        useAppSelector(state=>state.user.projects).map((project, index) => {
+                        projects.map((project, index) => {
                             return (
                                 <div className="w-[100%] h-[100px] hover:bg-[#f7f7f7] flex items-center p-[20px]" key={index}>
                                     <div className="w-[90%]">

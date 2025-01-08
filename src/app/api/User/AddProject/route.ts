@@ -8,7 +8,7 @@ export async function POST(request:Request){
         if(!accessToken){
             return Response.json({status:"400",message:"You are not logged in"});
         }
-        const {user,title,description,skills,categories,maxprice,minprice,client_name}=requestBody;
+        const {user,title,description,skills,categories,maxprice,minprice,client_name,client_country}=requestBody;
         const projectDetails:newproject={
             user:user,
             title:title,
@@ -17,7 +17,8 @@ export async function POST(request:Request){
             categories:categories,
             maxprice:maxprice,
             minprice:minprice,
-            cleint_name:client_name
+            cleint_name:client_name,
+            client_country:client_country
         }
         const response=await fetch('http://3.6.34.255:3000/api/v1/project/createProject',{
             method:'POST',
@@ -33,7 +34,8 @@ export async function POST(request:Request){
                 min_budget:projectDetails.minprice,
                 client_name:projectDetails.cleint_name,
                 skills:projectDetails.skills,
-                categories:projectDetails.categories
+                categories:projectDetails.categories,
+                clientCountry:client_country
             })
         })
         const res=await response.json();

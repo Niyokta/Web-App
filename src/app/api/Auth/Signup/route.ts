@@ -3,8 +3,7 @@ import { cookies } from "next/headers";
 export async function POST(request: Request) {
     try {
         const requestbody = await request.json();
-
-        const { Username, Email, Password } = requestbody
+        const { Username, Email, Password,phone,country,working_hours,birth_date,linkedin,github,x } = requestbody
         
         const response=await fetch('http://3.6.34.255:3000/api/v1/auth/create-account',{
             method:'POST',
@@ -15,7 +14,14 @@ export async function POST(request: Request) {
             body:JSON.stringify({
                 username:Username,
                 password:Password,
-                email:Email
+                email:Email,
+                phoneNumber:phone,
+                birthDate:birth_date,
+                workingHours:working_hours,
+                country:country,
+                linkedin:linkedin,
+                github:github,
+                x:x
             })
         })
 
