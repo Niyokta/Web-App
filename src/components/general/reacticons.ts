@@ -10,6 +10,7 @@ import { CgChevronDoubleRight } from "react-icons/cg";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { BiEdit } from "react-icons/bi";
 export {IoIosArrowDown,
     MdDelete,
     TbLoader3,
@@ -21,5 +22,6 @@ export {IoIosArrowDown,
     CgChevronDoubleRight,
     FaLinkedinIn,
     FaGithub,
-    FaXTwitter
+    FaXTwitter,
+    BiEdit
 }

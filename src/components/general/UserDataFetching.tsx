@@ -6,8 +6,7 @@ export default function UserDataFetching() {
     const dispatch=useAppDispatch();
     const user=useAppSelector(state=>state.user.userName);
     const fetchdata = async () => {
-        if(user!=="") return;
-
+        console.log("Fetching user data")
 
         //  ---------------- If you need to persist the user data even after refresh and make no api calls after every refresh, uncomment below (written by - Sahayak - not copied) ------------------
         
@@ -45,16 +44,18 @@ export default function UserDataFetching() {
                     email:res.user.email,
                     projects:res.user.projects,
                     bids:res.user.bids,
-                    working_hours:res.user.working_hours,
-                    birth_date:res.user.birth_date,
+                    working_hours:res.user.workingHours,
+                    birth_date:res.user.DOB,
                     freelancer_rating:res.user.freelancer_rating,
                     linkedin:res.user.linkedin,
                     github:res.user.github,
                     x:res.user.x,
                     country:res.user.country
                 }
-                localStorage.setItem('UserInfo',JSON.stringify(payload))
                 dispatch(updateUser(payload));
+            }
+            else{
+                console.log("Data not fetching")
             }
         })
     }

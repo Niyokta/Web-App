@@ -21,7 +21,7 @@ export default function SignupBox() {
         country: "",
         working_hour: "",
         birth_date: "",
-        phoneNumber:0
+        phoneNumber:""
     })
     const [socials, setsocials] = React.useState({
         linkedin: "",
@@ -31,11 +31,11 @@ export default function SignupBox() {
     const [curr, setcurr] = React.useState(0);
 
     const handlesignup = async () => {
-        const validity=validate(usercreds,socials);
-        if(validity!="Ok"){
-            toast({title:validity});
-            return;
-        }
+        // const validity=validate(usercreds,socials);
+        // if(validity!="Ok"){
+        //     toast({title:validity});
+        //     return;
+        // }
         setloading(true)
         await fetch('/api/Auth/Signup', {
             method: 'POST',
@@ -91,7 +91,7 @@ export default function SignupBox() {
                     </CardContent>
                     <CardContent>
                         <p>Phone Number</p>
-                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, email: e.target.value }))} />
+                        <Input type="number" onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, phoneNumber:e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Password</p>
