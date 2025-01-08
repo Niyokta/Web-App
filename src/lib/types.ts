@@ -6,6 +6,7 @@ export type newproject={
     skills:string[],
     categories:string[],
     cleint_name:string,
-    minprice:string
+    minprice:string,
+    client_country:string
 }
 
