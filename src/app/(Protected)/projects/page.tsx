@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 'use client';
 import ProjectUser from '@/components/Projects/projectUser';
 import React from 'react';
@@ -12,13 +12,6 @@ export default function Projects() {
       <ProjectUser />
     </div>
   );
-=======
-import React from "react";
-export default function projects(){
-    return(
-        <div>
 
-        </div>
-    )
->>>>>>> ffce78e3dda822bc50f6d276b64640c0f5a56690
 }
+  

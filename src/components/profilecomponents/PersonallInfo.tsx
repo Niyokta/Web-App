@@ -1,40 +1,10 @@
-"use client";
+'use client'
 import React from "react";
-<<<<<<< HEAD
-import { IoIosArrowDown, IoIosArrowUp } from "../general/reacticons";
-=======
 import Link from "next/link";
 import { IoIosArrowDown, IoIosArrowUp, BiEdit } from "../general/reacticons"
->>>>>>> ffce78e3dda822bc50f6d276b64640c0f5a56690
 import { useAppSelector } from "@/lib/reduxHooks";
 import PersonalInfoBox from "./PersonalInfoBox";
 export default function PersonalInfo() {
-<<<<<<< HEAD
-  const [part, setpart] = React.useState(false);
-  return (
-    <div
-      className="w-full min-h-[70px] max-h-[500px] mt-[20px] flex flex-col"
-      style={{ boxShadow: "0.1px 0.1px 0.1px 1px #dee0e2" }}
-    >
-      <div className="w-full h-[70px] flex items-center justify-between px-[20px]">
-        <p className="text-[20px] font-bold">Personal Information</p>
-        {!part ? (
-          <IoIosArrowDown
-            className="w-[30px] h-[30px] cursor-pointer"
-            onClick={() => {
-              setpart(!part);
-            }}
-          />
-        ) : (
-          <IoIosArrowUp
-            className="w-[30px] h-[30px] cursor-pointer"
-            onClick={() => {
-              setpart(!part);
-            }}
-          />
-        )}
-      </div>
-=======
     const [loading, setloading] = React.useState(true)
     const [part, setpart] = React.useState(false);
     return (
@@ -51,20 +21,9 @@ export default function PersonalInfo() {
                     }
                 } />}
             </div>
->>>>>>> ffce78e3dda822bc50f6d276b64640c0f5a56690
 
-      {/* content  */}
+            {/* content  */}
 
-<<<<<<< HEAD
-      <div
-        className="w-full max-h-[430px] font-light text-[14px]"
-        style={{ display: part ? "block" : "none", userSelect: "none" }}
-      >
-        <div className="w-[80%] h-[50px] flex p-[20px] items-center">
-          {" "}
-          <p className="w-[30%] pr-[40px] font-medium">Name</p>{" "}
-          <p>{useAppSelector((state) => state.user.userName)}</p>{" "}
-=======
 
             <div className="w-full max-h-[430px] font-light text-[14px] p-[20px]" style={{ display: part ? 'block' : 'none', userSelect: 'none' }} >
                 {/* <div className="w-[100%] flex justify-end">
@@ -87,19 +46,6 @@ export default function PersonalInfo() {
                     <PersonalInfoBox key1="Working Hours" val1={useAppSelector(state => state.user.working_hours)} key2="" val2="" />
                 </div>
             </div>
->>>>>>> ffce78e3dda822bc50f6d276b64640c0f5a56690
         </div>
-        <div className="w-[80%] h-[50px] flex p-[20px] items-center">
-          {" "}
-          <p className="w-[30%] pr-[40px] font-medium">Email ID</p>{" "}
-          <p>{useAppSelector((state) => state.user.email)}</p>{" "}
-        </div>
-        <div className="w-[80%] h-[50px] flex p-[20px] items-center">
-          {" "}
-          <p className="w-[30%] pr-[40px] font-medium">Phone </p>{" "}
-          <p>{useAppSelector((state) => state.user.phoneNumber)}</p>{" "}
-        </div>
-      </div>
-    </div>
-  );
+    )
 }
