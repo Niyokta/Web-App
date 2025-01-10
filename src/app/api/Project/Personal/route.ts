@@ -17,7 +17,7 @@ export async function GET(request: Request) {
       );
     }
 
-   let username = '1'
+   let username = '12'
     if (!username) {
       return new Response(
         JSON.stringify({
