@@ -1,6 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
+Clone the git repo : https://github.com/Niyokta/Web-App.git
+
+run the command 'npm install'
+
+
 
 First, run the development server:
 
