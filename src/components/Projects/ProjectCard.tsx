@@ -1,50 +1,24 @@
-import { FC } from "react";
-import { FaInfoCircle } from "react-icons/fa";
 
-interface Project {
-  title: string;
-  client_name: string;
-  client_country: string;
-  min_budget: string;
-}
-
-interface ProjectCardProps {
-  project: Project;
-}
-
-const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
-  const { title, client_name, client_country, min_budget } = project;
+const ProjectCard = ({ title, client_name, client_country, min_budget,skills }: { title: string, client_country: string, client_name: string, min_budget: string,skills:string[] }) => {
 
   return (
-    <div
-      style={{
-        padding: "20px",
-        width: "520px",
-      }}
-      className="hover:bg-[#f7f7f7] rounded-md shadow-md shadow-[#eeeeee]"
-    >
-      <h2
-        style={{
-          maxHeight: "100px",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-        }}
-      >
-        {title}
-      </h2>
-      <p>
-        <strong>{client_name}</strong> ({client_country})
-      </p>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <span>Minimum Bid: {min_budget}</span>
-        <FaInfoCircle size={20} color="gray" />
-      </div>
+    <div className="p-[20px] font-light text-[15px] hover:bg-[#f7f7f7] rounded-md" style={{ boxShadow: "1px 1px 5px 1px #eeeeee" }}>
+      <p className="text-[12px]">{`${client_name} ( ${client_country} )`}</p>
+      <p className="pt-[5px] font-medium">{title.length>80?title.slice(0,80)+"......":title}</p>
+      <p className="text-[12px] pb-[20px] underline-offset-2 underline">{`Min-Bid Price : ₹ ${min_budget}`}</p>
+      <span className="flex">
+        {
+          skills.length>0?skills.map((skill,index)=>{
+            if(index > 6 || skill==="") return;
+            return(
+              <p className="text-[10px] px-[3px] py-[1px] font-medium rounded-sm mr-[5px] border-[1px] border-[#c4c4c4] hover:bg-black hover:text-white cursor-default" key={index} style={{ boxShadow: "1px 1px 5px 1px #eeeeee" }}>{skill}</p>
+            )
+          }):(
+            <p></p>
+          )
+        }
+      </span>
+      <p className="text-blue-600 text-[11px] pt-[20px] cursor-pointer font-medium">Read More</p>
     </div>
   );
 };

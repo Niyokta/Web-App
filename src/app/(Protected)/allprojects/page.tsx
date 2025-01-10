@@ -1,37 +1,29 @@
 'use client'
-
+import React from 'react';
 import ProjectCard from '@/components/Projects/ProjectCard';
-import { useEffect, useState } from 'react';
-
-
-interface Project {
-  id: string;
-  title: string;
-  name: string;
-  country: string;
-  minimumData: string;
-}
-
+import { Checkbox } from "@/components/ui/checkbox"
+import { AllProjectsLoader } from '@/components';
 export default function Home() {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading,setloading]=React.useState<true | false>(true)
+  const [projects, setProjects] = React.useState([{
+    title:"",
+    client_name:"",
+    client_country:"",
+    min_budget:"",
+    skills_required:[]
+  }]);
+  const [filter,setfilter]=React.useState<string[]>([])
 
-  useEffect(() => {
+  React.useEffect(() => {
     async function fetchProjects() {
       try {
-      
-      
-      
         const response = await fetch('api/Project/allProjects',{
           method: 'GET',
-   
-          headers: {
-            'content-type':'application/json',
-              },
+          credentials:"include"
         });
         const data = await response.json();
-        console.log(data);
-        console.log(response);
-        setProjects(data.projects || []);  // Adjust property name based on API response structure
+        if(data.status==="200") setloading(false);
+        setProjects(data.projects); 
       } catch (error) {
         console.error('Failed to fetch projects:', error);
       }
@@ -41,11 +33,42 @@ export default function Home() {
   }, []);
 
   return (
+    loading?(
+      <AllProjectsLoader/>
+    ):
     <div>
-      <h1>Project List</h1>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+      <div className='w-full h-[100px] flex items-center justify-end'>
+        <Checkbox className='w-[15px] h-[15px]' onCheckedChange={()=>{
+          if(filter.includes("Web Development")){
+            const temp=filter.filter(s=>s!="Web Development");
+            setfilter(temp);
+          }
+          else{
+            setfilter([...filter,"Web Development"])
+          }
+        }}/> <p className='px-[10px] font-light text-[13px]'>Web Development</p>
+        <Checkbox className='w-[15px] h-[15px]' onCheckedChange={()=>{
+          if(filter.includes("Web Development")){
+            const temp=filter.filter(s=>s!="Web Development");
+            setfilter(temp);
+          }
+          else{
+            setfilter([...filter,"Web Development"])
+          }
+        }}/> <p className='px-[10px] font-light text-[13px]'>Graphic Design</p>
+        <Checkbox className='w-[15px] h-[15px]' onCheckedChange={()=>{
+          if(filter.includes("Web Development")){
+            const temp=filter.filter(s=>s!="Web Development");
+            setfilter(temp);
+          }
+          else{
+            setfilter([...filter,"Web Development"])
+          }
+        }}/> <p className='px-[10px] font-light text-[13px]'>Android Development</p>
+      </div>
+      <div className='grid grid-flow-row grid-col-1 md:grid-cols-2 gap-10'>
+        {projects.map((project,index) => (
+          <ProjectCard key={index} skills={project.skills_required} title={project.title} client_name={project.client_name} client_country={project.client_country} min_budget={project.min_budget} />
         ))}
       </div>
     </div>
