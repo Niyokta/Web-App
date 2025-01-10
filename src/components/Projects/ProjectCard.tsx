@@ -16,7 +16,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
   const { title, client_name, client_country, min_budget } = project;
 
   return (
-    <div style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '8px', width: '400px' }}>
+    <div style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '8px', width: '525px' }}>
       <h2 style={{ maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{title}</h2>
       <p>
         <strong>{client_name}</strong> ({client_country})
