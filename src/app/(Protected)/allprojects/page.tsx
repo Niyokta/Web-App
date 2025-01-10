@@ -10,7 +10,8 @@ export default function Home() {
     client_name:"",
     client_country:"",
     min_budget:"",
-    skills_required:[]
+    skills_required:[],
+    category:[]
   }]);
   const [filter,setfilter]=React.useState<string[]>([])
 
@@ -48,27 +49,27 @@ export default function Home() {
           }
         }}/> <p className='px-[10px] font-light text-[13px]'>Web Development</p>
         <Checkbox className='w-[15px] h-[15px]' onCheckedChange={()=>{
-          if(filter.includes("Web Development")){
-            const temp=filter.filter(s=>s!="Web Development");
+          if(filter.includes("Graphic Design")){
+            const temp=filter.filter(s=>s!="Graphic Design");
             setfilter(temp);
           }
           else{
-            setfilter([...filter,"Web Development"])
+            setfilter([...filter,"Graphic Design"])
           }
         }}/> <p className='px-[10px] font-light text-[13px]'>Graphic Design</p>
         <Checkbox className='w-[15px] h-[15px]' onCheckedChange={()=>{
-          if(filter.includes("Web Development")){
-            const temp=filter.filter(s=>s!="Web Development");
+          if(filter.includes("Android Development")){
+            const temp=filter.filter(s=>s!="Android Development");
             setfilter(temp);
           }
           else{
-            setfilter([...filter,"Web Development"])
+            setfilter([...filter,"Android Development"])
           }
         }}/> <p className='px-[10px] font-light text-[13px]'>Android Development</p>
       </div>
       <div className='grid grid-flow-row grid-col-1 md:grid-cols-2 gap-10'>
         {projects.map((project,index) => (
-          <ProjectCard key={index} skills={project.skills_required} title={project.title} client_name={project.client_name} client_country={project.client_country} min_budget={project.min_budget} />
+          <ProjectCard key={index} filter={filter} skills={project.skills_required} category={project.category} title={project.title} client_name={project.client_name} client_country={project.client_country} min_budget={project.min_budget} />
         ))}
       </div>
     </div>
