@@ -11,6 +11,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { BiEdit } from "react-icons/bi";
+import { FaSearch } from "react-icons/fa";
 export {IoIosArrowDown,
     MdDelete,
     TbLoader3,
@@ -23,5 +24,6 @@ export {IoIosArrowDown,
     FaLinkedinIn,
     FaGithub,
     FaXTwitter,
-    BiEdit
+    BiEdit,
+    FaSearch
 }

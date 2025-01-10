@@ -9,6 +9,7 @@ import AllBids from "./BidInsight/AllBids";
 import Projects from "./profilecomponents/Projects";
 import ListProjects from "./general/ListProjects";
 import AllProjectsLoader from "./general/AllProjectsLoader";
+import UserCard from "./general/UserCard";
 export {LoginBox,
     SignupBox,
     Navbar,
@@ -19,5 +20,6 @@ export {LoginBox,
     AllBids,
     BidStats,
     ListProjects,
-    AllProjectsLoader
+    AllProjectsLoader,
+    UserCard
 };
