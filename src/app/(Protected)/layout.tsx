@@ -37,7 +37,7 @@ export default function ProtectedLayout({
       <>
         <StoreProvider>
           <div className=" w-full h-screen ">
-            <div className="w-[100%] md:w-[70%] h-[100%] m-auto py-[10px]">
+            <div className="w-[90%] md:w-[70%] h-[100%] m-auto py-[10px]">
               <UserDataFetching/>
               <Navbar />
               {children}
