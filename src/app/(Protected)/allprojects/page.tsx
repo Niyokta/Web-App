@@ -23,7 +23,7 @@ export default function Home() {
           credentials:"include"
         });
         const data = await response.json();
-
+console.log(data);
         if(data.status==="200") setloading(false);
         setProjects(data.projects); 
       } catch (error) {
