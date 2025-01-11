@@ -31,11 +31,6 @@ export default function SignupBox() {
     const [curr, setcurr] = React.useState(0);
 
     const handlesignup = async () => {
-        // const validity=validate(usercreds,socials);
-        // if(validity!="Ok"){
-        //     toast({title:validity});
-        //     return;
-        // }
         setloading(true)
         await fetch('/api/Auth/Signup', {
             method: 'POST',
@@ -83,23 +78,23 @@ export default function SignupBox() {
                     </CardHeader>
                     <CardContent>
                         <p>Username</p>
-                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} value={usercreds.username} onChange={(e) => setusercreds((prev) => ({ ...prev, username: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Email ID</p>
-                        <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, email: e.target.value }))} />
+                        <Input onKeyDown={handlekeydown} value={usercreds.email} onChange={(e) => setusercreds((prev) => ({ ...prev, email: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Phone Number</p>
-                        <Input type="number" onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, phoneNumber:e.target.value }))} />
+                        <Input type="number" onKeyDown={handlekeydown} value={usercreds.phoneNumber} onChange={(e) => setusercreds((prev) => ({ ...prev, phoneNumber:e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Password</p>
-                        <Input type='password' onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
+                        <Input type='password' onKeyDown={handlekeydown} value={usercreds.password} onChange={(e) => setusercreds((prev) => ({ ...prev, password: e.target.value }))} />
                     </CardContent>
                     <CardContent>
                         <p>Confirm Password</p>
-                        <Input type='password' onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, cnfpassword: e.target.value }))} />
+                        <Input type='password' onKeyDown={handlekeydown} value={usercreds.cnfpassword} onChange={(e) => setusercreds((prev) => ({ ...prev, cnfpassword: e.target.value }))} />
                     </CardContent>
                     <CardFooter className="flex flex-col">
                         {/* <Button variant="default" className="mx-auto" onClick={handlesignup}>Create Account</Button> */}
@@ -119,26 +114,26 @@ export default function SignupBox() {
                         </CardHeader>
                         <CardContent>
                             <p>D.O.B {`( DD-MM-YYYY )`}</p>
-                            <Input onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, birth_date: e.target.value }))} />
+                            <Input onKeyDown={handlekeydown} value={usercreds.birth_date} onChange={(e) => setusercreds((prev) => ({ ...prev, birth_date: e.target.value }))} />
                         </CardContent>
                         <CardContent>
                             <p>Working Hours</p>
-                            <Input type='password' onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, working_hour: e.target.value }))} />
+                            <Input  onKeyDown={handlekeydown} value={usercreds.working_hour} onChange={(e) => setusercreds((prev) => ({ ...prev, working_hour: e.target.value }))} />
                         </CardContent>
                         <CardContent>
                             <p>Country / Nationality</p>
-                            <Input type='password' onKeyDown={handlekeydown} onChange={(e) => setusercreds((prev) => ({ ...prev, country: e.target.value }))} />
+                            <Input onKeyDown={handlekeydown} value={usercreds.country} onChange={(e) => setusercreds((prev) => ({ ...prev, country: e.target.value }))} />
                         </CardContent>
                         <CardContent>
                             <p>Social Links</p>
                             <div className="flex items-center justify-between pt-[20px]">
-                                <FaLinkedinIn className="w-[30px] h-[30px]" /><Input className="w-[90%]"  placeholder="LinkedIn" onKeyDown={handlekeydown} onChange={(e) => setsocials((prev) => ({ ...prev, linkedin: e.target.value }))} />
+                                <FaLinkedinIn className="w-[30px] h-[30px]" /><Input className="w-[90%]" value={socials.linkedin}  placeholder="LinkedIn" onKeyDown={handlekeydown} onChange={(e) => setsocials((prev) => ({ ...prev, linkedin: e.target.value }))} />
                             </div>
                             <div className="flex items-center justify-between pt-[20px]">
-                                <FaGithub className="w-[30px] h-[30px]" /><Input className="w-[90%]"  placeholder="GitHub" onKeyDown={handlekeydown} onChange={(e) => setsocials((prev) => ({ ...prev, github: e.target.value }))} />
+                                <FaGithub className="w-[30px] h-[30px]" /><Input className="w-[90%]" value={socials.github} placeholder="GitHub" onKeyDown={handlekeydown} onChange={(e) => setsocials((prev) => ({ ...prev, github: e.target.value }))} />
                             </div>
                             <div className="flex items-center justify-between pt-[20px]">
-                                <FaXTwitter className="w-[30px] h-[30px]" /><Input className="w-[90%]" placeholder="Twitter / X" onKeyDown={handlekeydown} onChange={(e) => setsocials((prev) => ({ ...prev, x: e.target.value }))} />
+                                <FaXTwitter className="w-[30px] h-[30px]" /><Input className="w-[90%]" value={socials.x} placeholder="Twitter / X" onKeyDown={handlekeydown} onChange={(e) => setsocials((prev) => ({ ...prev, x: e.target.value }))} />
                             </div>
                         </CardContent>
                         <CardFooter className="flex flex-col">
