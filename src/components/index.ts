@@ -10,6 +10,7 @@ import Projects from "./profilecomponents/Projects";
 import ListProjects from "./general/ListProjects";
 import AllProjectsLoader from "./general/AllProjectsLoader";
 import UserCard from "./general/UserCard";
+import UserProfile from "./general/UserProfileComps/UserProfile";
 export {LoginBox,
     SignupBox,
     Navbar,
@@ -21,5 +22,6 @@ export {LoginBox,
     BidStats,
     ListProjects,
     AllProjectsLoader,
-    UserCard
+    UserCard,
+    UserProfile
 };
