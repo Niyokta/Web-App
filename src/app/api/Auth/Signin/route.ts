@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { cookies } from "next/headers";
+import { addeducation } from '@/lib/features/userdetails';
 export async function GET(request: Request) {
     const headerlist = headers();
     const cookiestore = cookies();
@@ -25,6 +26,7 @@ export async function GET(request: Request) {
         })
         const res = await response.json();
         if (res.status == "200") {
+            console.log(res.accessToken);
             cookiestore.set('accessToken', res.accessToken);
             cookiestore.set('refreshToken', res.refreshToken);
 

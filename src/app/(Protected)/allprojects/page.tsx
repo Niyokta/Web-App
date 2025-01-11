@@ -23,6 +23,7 @@ export default function Home() {
           credentials:"include"
         });
         const data = await response.json();
+
         if(data.status==="200") setloading(false);
         setProjects(data.projects); 
       } catch (error) {
@@ -67,6 +68,7 @@ export default function Home() {
           }
         }}/> <p className='px-[10px] font-light text-[13px]'>Android Development</p>
       </div>
+     
       <div className='grid grid-flow-row grid-col-1 md:grid-cols-2 gap-10'>
         {projects.map((project,index) => (
           <ProjectCard key={index} filter={filter} skills={project.skills_required} category={project.category} title={project.title} client_name={project.client_name} client_country={project.client_country} min_budget={project.min_budget} />

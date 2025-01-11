@@ -16,7 +16,9 @@ const ProjectCard = ({ filter, title, client_name,category, client_country, min_
     <div className="p-[20px] font-light text-[15px] hover:bg-[#f7f7f7] rounded-md" style={{ boxShadow: "1px 1px 5px 1px #eeeeee",display:display }}>
       <p className="text-[12px]">{`${client_name} ( ${client_country} )`}</p>
       <p className="pt-[5px] font-medium">{title.length > 80 ? title.slice(0, 80) + "......" : title}</p>
-      <p className="text-[12px] pb-[20px] underline-offset-2 underline">{`Min-Bid Price : ₹ ${min_budget}`}</p>
+      <p className="text-[12px] pb-[20px] underline-offset-2 underline">{`Min-Bid Price : ₹ ${min_budget}`}  </p>
+
+      
       <span className="flex">
         {
           skills.length > 0 ? skills.map((skill, index) => {
