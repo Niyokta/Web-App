@@ -6,6 +6,7 @@ import { AllProjectsLoader } from '@/components';
 export default function Home() {
   const [loading,setloading]=React.useState<true | false>(true)
   const [projects, setProjects] = React.useState([{
+    project_id:0,
     title:"",
     client_name:"",
     client_country:"",
@@ -71,7 +72,7 @@ export default function Home() {
      
       <div className='grid grid-flow-row grid-col-1 md:grid-cols-2 gap-10'>
         {projects.map((project,index) => (
-          <ProjectCard key={index} filter={filter} skills={project.skills_required} category={project.category} title={project.title} client_name={project.client_name} client_country={project.client_country} min_budget={project.min_budget} />
+          <ProjectCard key={index} project_id={project.project_id} filter={filter} skills={project.skills_required} category={project.category} title={project.title} client_name={project.client_name} client_country={project.client_country} min_budget={project.min_budget} />
         ))}
       </div>
     </div>

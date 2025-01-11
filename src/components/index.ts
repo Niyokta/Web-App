@@ -11,6 +11,7 @@ import ListProjects from "./general/ListProjects";
 import AllProjectsLoader from "./general/AllProjectsLoader";
 import UserCard from "./general/UserCard";
 import UserProfile from "./general/UserProfileComps/UserProfile";
+import ProjectDetail from "./Projects/projectDetails";
 export {LoginBox,
     SignupBox,
     Navbar,
@@ -23,5 +24,6 @@ export {LoginBox,
     ListProjects,
     AllProjectsLoader,
     UserCard,
-    UserProfile
+    UserProfile,
+    ProjectDetail
 };
