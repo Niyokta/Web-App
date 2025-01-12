@@ -3,7 +3,7 @@
 import React from "react";
 import { TbLoader3 } from "@/components/general/reacticons";
 import { useRouter } from "next/navigation";
-import { Navbar } from "@/components";
+import { Footer, Navbar } from "@/components";
 import StoreProvider from "./StoreProvider";
 import UserDataFetching from "@/components/general/UserDataFetching";
 export default function ProtectedLayout({
@@ -41,6 +41,7 @@ export default function ProtectedLayout({
               <UserDataFetching/>
               <Navbar />
               {children}
+              <Footer/>
             </div>
           </div>
         </StoreProvider>

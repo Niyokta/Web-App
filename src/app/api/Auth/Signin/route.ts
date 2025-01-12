@@ -26,7 +26,6 @@ export async function GET(request: Request) {
         })
         const res = await response.json();
         if (res.status == "200") {
-            console.log(res.accessToken);
             cookiestore.set('accessToken', res.accessToken);
             cookiestore.set('refreshToken', res.refreshToken);
 
