@@ -2,7 +2,6 @@
 'use client';
 import ProjectUser from '@/components/Projects/projectUser';
 import React from 'react';
-// import ProjectUser from '@/components/Projects/ProjectUser';
 
 export default function Projects() {
   return (

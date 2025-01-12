@@ -11,7 +11,7 @@ import ListProjects from "./general/ListProjects";
 import AllProjectsLoader from "./general/AllProjectsLoader";
 import UserCard from "./general/UserCard";
 import UserProfile from "./general/UserProfileComps/UserProfile";
-import ProjectDetail from "./Projects/projectDetails";
+import Footer from "./general/ProtectedFooter/Footer";
 export {LoginBox,
     SignupBox,
     Navbar,
@@ -25,5 +25,5 @@ export {LoginBox,
     AllProjectsLoader,
     UserCard,
     UserProfile,
-    ProjectDetail
+    Footer
 };
