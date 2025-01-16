@@ -1,4 +1,4 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const userSlice = createSlice({
   name: 'user',
@@ -22,20 +22,20 @@ const userSlice = createSlice({
   reducers: {
     updateUser:(state,action)=>{
         const user=action.payload
-        state.userid=user.id;
-        state.email=user.email,
-        state.userName=user.username,
-        state.phoneNumber=user.phone,
-        state.education=user.education,
-        state.experience=user.experience,
-        state.projects=user.projects,
-        state.bids=user.bids,
-        state.working_hours=user.working_hours,
-        state.freelancer_rating=user.freelancer_rating,
-        state.birth_date=user.birth_date,
-        state.linkedin=user.linkedin,
-        state.github=user.github,
-        state.x=user.x,
+        state.userid=user.id
+        state.email=user.email
+        state.userName=user.username
+        state.phoneNumber=user.phone
+        state.education=user.education
+        state.experience=user.experience
+        state.projects=user.projects
+        state.bids=user.bids
+        state.working_hours=user.working_hours
+        state.freelancer_rating=user.freelancer_rating
+        state.birth_date=user.birth_date
+        state.linkedin=user.linkedin
+        state.github=user.github
+        state.x=user.x
         state.country=user.country
     },
     addeducation:(state,action)=>{

@@ -18,9 +18,11 @@ export async function POST(request: Request) {
     })
     const res = await response.json();
     return Response.json(res);
-
   } 
-  catch (err: any) {
-    return Response.json({ status: "400", message: err.message });
-  }
+  catch(err){
+    if(err instanceof Error){
+        return Response.json({status:"400",message:err.message})
+    }
+    else return Response.json({status:"400",message:"Unexpected Server Error"})
+}
 }

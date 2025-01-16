@@ -33,18 +33,18 @@ export default function AllBids() {
                 currfilter==="all"?(
                     bids.map((bid,index)=>{
                         return(
-                            <BidBox bid={{project_title:"This is the title of the bid and is currently unavailable",description:bid.proposal,bid_id:bid.bid_id,status:bid.status,completion_time:bid.completion_time}}/>
+                            <BidBox key={index} bid={{project_title:"This is the title of the bid and is currently unavailable",description:bid.proposal,bid_id:bid.bid_id,status:bid.status,completion_time:bid.completion_time}}/>
                         )
                     })
                 ):currfilter==="ongoing"?(
                     ongoing.map((bid,index)=>{
                         return(
-                            <BidBox bid={{project_title:"This is the title of the bid and is currently unavailable",description:bid.proposal,bid_id:bid.bid_id,status:bid.status,completion_time:bid.completion_time}}/>
+                            <BidBox key={index} bid={{project_title:"This is the title of the bid and is currently unavailable",description:bid.proposal,bid_id:bid.bid_id,status:bid.status,completion_time:bid.completion_time}}/>
                         )
                     })
                 ):completed.map((bid,index)=>{
                     return(
-                        <BidBox bid={{project_title:"This is the title of the bid and is currently unavailable",description:bid.proposal,bid_id:bid.bid_id,status:bid.status,completion_time:bid.completion_time}}/>
+                        <BidBox key={index} bid={{project_title:"This is the title of the bid and is currently unavailable",description:bid.proposal,bid_id:bid.bid_id,status:bid.status,completion_time:bid.completion_time}}/>
                     )
                 })
             }

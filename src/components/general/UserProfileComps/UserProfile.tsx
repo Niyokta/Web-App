@@ -46,7 +46,7 @@ export default function UserProfile({ username }: { username: string }) {
     }
     React.useEffect(() => {
         getUserDetails()
-    }, [])
+    })
     return (
         <div className="w-[50%] h-screen mx-auto p-[30px]" >
             {

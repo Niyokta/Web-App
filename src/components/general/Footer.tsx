@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="w-full lg:w-1/2 mb-6 lg:mb-0 lg:pr-6">
             <h2 className="text-blue-500 text-2xl font-bold mb-4">Niyokta</h2>
             <p className="text-sm text-gray-300">
-              Our platform bridges the gap between freelancers and clients. Whether you're a creative or a client in need of professional services, we make connecting seamless and efficient.
+              Our platform bridges the gap between freelancers and clients. Whether you are a creative or a client in need of professional services, we make connecting seamless and efficient.
             </p>
           </div>
 
@@ -21,7 +21,7 @@ export default function Footer() {
           <div className="w-full lg:w-1/2">
             <h3 className="text-xl font-semibold text-white mb-2">Subscribe to Our Newsletter</h3>
             <p className="text-sm text-gray-300 mb-4">
-              We'll keep you updated with the best new jobs.
+              We will keep you updated with the best new jobs.
             </p>
             <form className="flex flex-col sm:flex-row items-center bg-[#172B40] p-4 rounded-xl">
               <input
@@ -102,7 +102,7 @@ export default function Footer() {
                 <Link href="#">Blogs</Link>
               </li>
               <li>
-                <Link href="#">FAQ's</Link>
+                <Link href="#">FAQs</Link>
               </li>
               <li>
                 <Link href="#">Contact</Link>

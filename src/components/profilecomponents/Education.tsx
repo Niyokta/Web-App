@@ -53,13 +53,12 @@ export default function Education() {
             })
     }
     const handledelete = async (id: number) => {
-        const response = await fetch('/api/User/DeleteEducation', {
+        await fetch('/api/User/DeleteEducation', {
             method: 'POST',
             body: JSON.stringify({
                 educationId: id
             })
         })
-        const res = await response.json();
         dispatch(removeeducation(id))
         toast({ title: "Record Deleted Successfully", description: "Please refresh the page" })
     }

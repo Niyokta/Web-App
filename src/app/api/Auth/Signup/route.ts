@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+
 
 export async function POST(request: Request) {
     try {
@@ -32,10 +32,10 @@ export async function POST(request: Request) {
             message:res.message
         })
     }
-    catch (err) {
-        return Response.json({
-            status: "23",
-            message: "asdf"
-        })
+    catch(err){
+        if(err instanceof Error){
+            return Response.json({status:"400",message:err.message})
+        }
+        else return Response.json({status:"400",message:"Unexpected Server Error"})
     }
 }

@@ -5,7 +5,6 @@ import { IoIosArrowDown, IoIosArrowUp, BiEdit } from "../general/reacticons"
 import { useAppSelector } from "@/lib/reduxHooks";
 import PersonalInfoBox from "./PersonalInfoBox";
 export default function PersonalInfo() {
-    const [loading, setloading] = React.useState(true)
     const [part, setpart] = React.useState(false);
     return (
         <div className="w-full min-h-[70px] max-h-[500px] mt-[20px] flex flex-col" style={{ boxShadow: "0.1px 0.1px 0.1px 1px #dee0e2" }}>

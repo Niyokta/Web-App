@@ -1,12 +1,11 @@
 'use client';
 import Link from "next/link";
-import { Navbar } from '@/components';
 import Footer from "@/components/general/Footer";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <  >
-      <Navbar />
       <div className="flex flex-col md:flex-row items-center justify-between w-full h-auto md:h-[600px] md:p-16 p-8 bg-[#FFFBF3]">
         {/* Left Section: Text Content */}
         <div className="w-full md:w-1/2 p-4 text-center  md:text-left md:ml-8 ">
@@ -33,11 +32,12 @@ export default function Home() {
 
         {/* Right Section: Image */}
         <div className="w-full  md:w-1/2 flex justify-center p-4">
-          <img
+          {/* <img
             className="w-full max-w-md sm:max-w-lg"
             src="/images/landing.png"
             alt="Illustration"
-          />
+          /> */}
+          <Image alt="image here" src="/images/landing.png" width={500} height={500} className="w-full  md:w-1/2 flex justify-center p-4" />
         </div>
         
       </div>
