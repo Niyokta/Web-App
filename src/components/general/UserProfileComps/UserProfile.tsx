@@ -7,6 +7,7 @@ import PersonalInfo from "./PersonalInfo";
 import Education from "./Education";
 import Experience from "./Experience";
 import Socials from "./Socials";
+import UserProfileLoader from "./UserProfileLoader";
 
 export default function UserProfile({ username }: { username: string }) {
     const { toast } = useToast()
@@ -46,14 +47,12 @@ export default function UserProfile({ username }: { username: string }) {
     }
     React.useEffect(() => {
         getUserDetails()
-    })
+    },[])
     return (
         <div className="w-[50%] h-screen mx-auto p-[30px]" >
             {
                 loading ? (
-                    <div>
-                        <Skeleton className="bg-[#eeeeee] w-[300px] h-[100px]" />
-                    </div>
+                    <UserProfileLoader/>
                 ) : (
                     <div className="font-light text-[15px]">
                         <div className="p-[20px] rounded-md" style={{boxShadow:"1px 1px 5px 1px #eeeeee"}}>
