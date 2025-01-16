@@ -83,7 +83,7 @@ export default function LoginBox() {
                     </CardContent>
                     <CardFooter className="flex flex-col">
                         <Button variant="default"  className="mx-auto" onClick={handlesignin}>SignIn</Button>
-                        <p className='text-center text-[12px] mt-[10px] underline'> Don't have an account? <Link href='/auth/signup' onClick={()=>setloading(true)}>Register</Link></p>
+                        <p className='text-center text-[12px] mt-[10px] underline'> Do not have an account? <Link href='/auth/signup' onClick={()=>setloading(true)}>Register</Link></p>
                     </CardFooter>
                 </Card>
             </div>

@@ -1,7 +1,6 @@
 import { headers } from "next/headers";
 import { cookies } from "next/headers";
-import { addeducation } from '@/lib/features/userdetails';
-export async function GET(request: Request) {
+export async function GET() {
     const headerlist = headers();
     const cookiestore = cookies();
     const username = headerlist.get('Username');
@@ -35,11 +34,11 @@ export async function GET(request: Request) {
             message: res.message
         })
     }
-    catch (err:any) {
-        return Response.json({
-            status:"400",
-            message:err.message
-        })
+    catch(err){
+        if(err instanceof Error){
+            return Response.json({status:"400",message:err.message})
+        }
+        else return Response.json({status:"400",message:"Unexpected Server Error"})
     }
 
 }

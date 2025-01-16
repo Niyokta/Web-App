@@ -1,10 +1,9 @@
 'use client'
 import React from "react";
-import { useAppDispatch,useAppSelector } from "@/lib/reduxHooks";
+import { useAppDispatch } from "@/lib/reduxHooks";
 import { updateUser } from "@/lib/features/userdetails";
 export default function UserDataFetching() {
     const dispatch=useAppDispatch();
-    const user=useAppSelector(state=>state.user.userName);
     const fetchdata = async () => {
         console.log("Fetching user data")
 
@@ -62,7 +61,7 @@ export default function UserDataFetching() {
     
     React.useEffect(() => {
         fetchdata()
-    }, [])
+    })
     return (
         <></>
     )

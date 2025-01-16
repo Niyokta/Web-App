@@ -19,11 +19,11 @@ export async function GET(){
     }
     catch(err){
         if(err instanceof Error)
-        Response.json({
+         return Response.json({
             status:"400",
             message:err.message
         })
-        else Response.json({
+        else return Response.json({
             status:"400",
             message:"Internal Server Error"
         })

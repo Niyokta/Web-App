@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-export async function GET(request: Request) {
+export async function GET() {
     const cookiestore = cookies();
     const accessToken = cookiestore.get('accessToken')?.value
     const refreshToken = cookiestore.get('refreshToken')?.value
@@ -31,10 +31,10 @@ export async function GET(request: Request) {
         }
         return Response.json({status:res2.status,message:res2.message})
     }
-    catch (err: any) {
-        return Response.json({
-            status: '400',
-            message: err.message
-        })
+    catch(err){
+        if(err instanceof Error){
+            return Response.json({status:"400",message:err.message})
+        }
+        else return Response.json({status:"400",message:"Unexpected Server Error"})
     }
 }

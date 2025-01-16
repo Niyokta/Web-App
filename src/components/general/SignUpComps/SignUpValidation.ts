@@ -53,10 +53,10 @@ function checkPassword(password:string){
     const special=["!","@","#","$","%","^","&","*","(",")","-","+","_"];
     let containsnums=false;
     let containsspecial=false;
-    nums.map((num,index)=>{
+    nums.map((num)=>{
         if(password.includes(num)) containsnums=true;
     })
-    special.map((special,index)=>{
+    special.map((special)=>{
         if(password.includes(special)) containsspecial=true;
     })
     if(!containsnums) return "Password must contain a numeric value";

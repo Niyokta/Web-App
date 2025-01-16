@@ -7,7 +7,6 @@ import { TbLoader3, CgChevronDoubleRight, CgChevronDoubleLeft, FaLinkedinIn, FaG
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link";
-import validate from "./SignUpValidation";
 
 export default function SignupBox() {
     const { toast } = useToast();
@@ -57,9 +56,9 @@ export default function SignupBox() {
                 if (res.status === "200") router.replace('/auth/signin');
                 else {toast({title:res.message});setloading(false);}
             })
-            .catch((err) => setloading(false))
+            .catch(() => setloading(false))
     }
-    const handlekeydown = (event: any) => {
+    const handlekeydown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') handlesignup();
     }
     return (

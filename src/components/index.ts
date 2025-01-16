@@ -25,5 +25,5 @@ export {LoginBox,
     AllProjectsLoader,
     UserCard,
     UserProfile,
-    Footer
+    Footer,
 };

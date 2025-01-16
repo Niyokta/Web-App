@@ -36,7 +36,10 @@ export async function POST(request:Request){
 
 
     }   
-    catch(err:any){
-        Response.json({satus:"400",message:err.message});
+    catch(err){
+        if(err instanceof Error){
+            return Response.json({status:"400",message:err.message})
+        }
+        else return Response.json({status:"400",message:"Unexpected Server Error"})
     }
 }

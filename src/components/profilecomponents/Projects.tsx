@@ -92,8 +92,8 @@ export default function Projects() {
                             return (
                                 <div className="w-[100%] h-[100px] hover:bg-[#f7f7f7] flex items-center p-[20px]" key={index}>
                                     <div className="w-[90%]">
-                                        <p className="text-[20px] font-medium">{project.title.length > 90?project.title.slice(0,90)+" .....":project.title}</p>
-                                        <p className="text-[15px] font-medium">{project.created_at.slice(0,10)} | Rs. {project.min_budget} - Rs. {project.max_budget}</p>
+                                        <p className="text-[15px] font-light">{project.title.length > 150?project.title.slice(0,150)+" .....":project.title}</p>
+                                        <p className="text-[13px] font-light">{project.created_at.slice(0,10)} | Rs. {project.min_budget} - Rs. {project.max_budget}</p>
                                     </div>
                                     <Dialog>
                                         <DialogTrigger className=""><MdDelete className="w-[20px] h-[20px] hover:animate-ping" style={{ color: '838383' }} /></DialogTrigger>

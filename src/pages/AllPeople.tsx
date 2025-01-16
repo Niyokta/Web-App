@@ -2,7 +2,6 @@
 import React from "react";
 import { UserCard } from "@/components";
 import { Input } from "@/components/ui/input";
-import {FaSearch} from "@/components/general/reacticons"
 export default function AllPeople() {
     const [loading, setloading] = React.useState<true | false>(true);
     const [users, setusers] = React.useState([{

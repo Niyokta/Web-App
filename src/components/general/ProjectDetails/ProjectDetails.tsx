@@ -27,7 +27,7 @@ export default function ProjectDetails({projectId}:{projectId:number}){
     }
     React.useEffect(()=>{
         fetchProjectDetails()
-    },[])
+    })
     return(
         loading?<DetailsLoader/>:
         <div className="w-[90%] md:w-[50%] mx-auto px-[20px] md:px-[60px] py-[50px] pt-[100px] min-h-screen text-[15px] font-light" style={{boxShadow:"1px 1px 5px 1px #eeeeee"}}>

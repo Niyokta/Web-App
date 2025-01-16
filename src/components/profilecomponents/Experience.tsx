@@ -59,13 +59,12 @@ export default function Experience() {
             })
     }
     const handledelete=async(id:number)=>{
-        const response=await fetch('/api/User/DeleteExperience',{
+        await fetch('/api/User/DeleteExperience',{
             method:'POST',
             body:JSON.stringify({
                 experienceId:id
             })
         })
-        const res=await response.json();
         dispatch(removeexperience(id))
         toast({title:"Record Deleted Successfully",description:"Please refresh the page"})
     }
