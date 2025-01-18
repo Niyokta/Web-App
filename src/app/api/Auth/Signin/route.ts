@@ -25,8 +25,14 @@ export async function GET() {
         })
         const res = await response.json();
         if (res.status == "200") {
-            cookiestore.set('accessToken', res.accessToken);
-            cookiestore.set('refreshToken', res.refreshToken);
+            cookiestore.set('accessToken', res.accessToken,{
+                sameSite:"strict",
+                maxAge:20*60*1000
+            });
+            cookiestore.set('refreshToken', res.refreshToken,{
+                sameSite:"strict",
+                maxAge:7*24*60*60*1000
+            });
 
         }
         return Response.json({
