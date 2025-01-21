@@ -32,7 +32,6 @@ export default function Education() {
         if (educations.length >= 5) {
             toast({ title: "Maximum Limit Reached", description: "Please remove one to add new", variant: 'destructive' })
         }
-        // console.log(newedu)
         await fetch('/api/User/AddEducation', {
             method: 'POST',
             credentials: 'include',

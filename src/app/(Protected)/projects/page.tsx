@@ -5,7 +5,9 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { AllProjectsLoader } from '@/components';
 import { CgChevronDoubleLeft, CgChevronDoubleRight } from '@/components/general/reacticons';
 import { DummyProject, ProjectModel } from '@/lib/types/ProjectType';
+import { useToast } from '@/hooks/use-toast';
 export default function Home() {
+  const {toast}=useToast();
   const [loading,setloading]=React.useState<true | false>(true)
   const [projects, setProjects] = React.useState<ProjectModel[]>([DummyProject]);
   const [filter,setfilter]=React.useState<string[]>([])
@@ -25,11 +27,11 @@ export default function Home() {
         const filteredData=data.projects.filter((s:ProjectModel)=>s.project_id!==4 && s.project_id!==5);
         lastPage.current=Math.ceil((filteredData.length/10));
         if(data.status==="200") setloading(false);
-        console.log(data.projects)
         setProjects(filteredData); 
 
       } catch (error) {
-        console.error('Failed to fetch projects:', error);
+        if(error instanceof Error)toast({title:error.message})
+          else toast({title:"Unexpected Error Occured"})
       }
     }
 

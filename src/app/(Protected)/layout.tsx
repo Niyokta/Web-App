@@ -24,7 +24,6 @@ export default function ProtectedLayout({
       })
         .then((res) => res.json())
         .then((res) => {
-          // console.log(res);
           if (res.status !== "200") router.replace('/auth/signin')
           else setloading(false)
         })

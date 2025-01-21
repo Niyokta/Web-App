@@ -63,7 +63,6 @@ export default function Projects() {
         })
         .then((res)=>res.json())
         .then((res)=>{
-            console.log(res)
             toast({title:res.message,description:"Please refresh the page"});
         })
     }

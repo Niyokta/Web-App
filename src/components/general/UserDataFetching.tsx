@@ -2,15 +2,15 @@
 import React from "react";
 import { useAppDispatch } from "@/lib/reduxHooks";
 import { updateUser } from "@/lib/features/userdetails";
+import { useToast } from "@/hooks/use-toast";
 export default function UserDataFetching() {
+    const {toast}=useToast()
     const dispatch=useAppDispatch();
     const fetchdata = async () => {
-        console.log("Fetching user data")
 
         //  ---------------- If you need to persist the user data even after refresh and make no api calls after every refresh, uncomment below (written by - Sahayak - not copied) ------------------
         
         // const userinlocal=localStorage.getItem('UserInfo')
-        // console.log(userinlocal)
         // if(userinlocal){
         //     const userdata=JSON.parse(userinlocal)
         //     const payload={
@@ -23,7 +23,6 @@ export default function UserDataFetching() {
         //         projects:userdata.projects,
         //         bids:userdata.bids
         //     }
-        //     console.log("I know you did refresh....Getting data from local storage")
         //     dispatch(updateUser(payload));
         //     return;
         // };
@@ -54,7 +53,7 @@ export default function UserDataFetching() {
                 dispatch(updateUser(payload));
             }
             else{
-                console.log("Data not fetching")
+                toast({title:"Something went wrong!"})
             }
         })
     }

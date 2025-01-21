@@ -39,7 +39,6 @@ export default function LoginBox() {
             }
         }).then((res) => res.json())
             .then((res) => {
-                console.log(res)
                 if (res.status == "200") return router.replace('/dashboard')
                 else {
                     setloading(false);
