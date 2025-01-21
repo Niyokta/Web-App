@@ -10,7 +10,6 @@ const ProjectUser = () => {
         credentials: 'include',
       });
      
-      console.log(response);
       return response;
     } catch (error) {
       console.error('Error fetching project details:', error);

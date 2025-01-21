@@ -22,7 +22,6 @@ export default function AllPeople() {
             credentials: "include"
         })
         const res = await allUsers.json();
-        console.log(res)
         if (res.status === "200") {
             setusers(res.users)
             setloading(false);

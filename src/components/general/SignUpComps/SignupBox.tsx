@@ -52,7 +52,6 @@ export default function SignupBox() {
         })
             .then((res) => res.json())
             .then((res) => {
-                console.log("signup res - > ", res)
                 if (res.status === "200") router.replace('/auth/signin');
                 else {toast({title:res.message});setloading(false);}
             })

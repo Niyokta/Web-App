@@ -35,9 +35,7 @@ export default function UserProfile({ username }: { username: string }) {
             })
         })
         const res = await userDetails.json()
-        console.log(res);
         if (res.status === "200") {
-            console.log(res.user)
             setuser(res.user)
             setloading(false);
         }

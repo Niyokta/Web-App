@@ -25,7 +25,6 @@ export async function GET() {
     })
     })
     const res = await response.json();
-    console.log(res);
     return Response.json(res);
   } 
   catch(err){

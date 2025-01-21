@@ -36,7 +36,6 @@ export default function Experience() {
             toast({ title: "Maximum Limit Reached", description: "You can not add more than 5 experiences. Delete one to add new", variant: 'destructive' })
             return;
         }
-        // console.log(newexp)
         await fetch('/api/User/AddExperience', {
             method: 'POST',
             credentials: 'include',
