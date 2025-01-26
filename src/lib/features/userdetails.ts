@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { DummyProject } from '../types/ProjectType'
 
 const userSlice = createSlice({
   name: 'user',
   initialState: {
+    loading:true,
     userid:0,
     userName:"",
     email:"",
@@ -15,13 +17,14 @@ const userSlice = createSlice({
     github:"",
     x:"",
     education:[{id:0,courseName:"",yearFrom:"",yearTo:"",institute:"",userId:0}],
-    projects:[{project_id:0,title:"",description:"",max_budget:"",min_budget:"",created_at:"",skills:[],client_country:"",}],
+    projects:[DummyProject],
     bids:[{bid_id:0,freelancer_id:0,project_id:0,bidding_price:"",freelancer_name:"",proposal:"",completion_time:"",status:"",submitted_at:"",client_rating:"",is_active:"",project_title:"",client_name:"",client_country:"",freelancer_rating:"",}],
     experience:[{id:0,title:"",yearFrom:"",yearTo:"",company:"",userId:0,description:""}]
   },
   reducers: {
     updateUser:(state,action)=>{
         const user=action.payload
+        state.loading=false,
         state.userid=user.id
         state.email=user.email
         state.userName=user.username
@@ -71,9 +74,14 @@ const userSlice = createSlice({
         const expId=action.payload
         state.experience=state.experience.filter(s=>s.id!=expId)
     },
+    loadingstate:(state,action)=>{
+        const temp=action.payload
+        state.loading=temp;
+
+    }
   }
 })
 
-export const { updateUser, addeducation,removeeducation,addexperience,removeexperience } = userSlice.actions;
+export const { updateUser, addeducation,removeeducation,addexperience,removeexperience,loadingstate } = userSlice.actions;
 
 export default userSlice.reducer;

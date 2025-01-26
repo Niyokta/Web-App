@@ -11,17 +11,21 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useToast } from "@/hooks/use-toast";
-// import { useAppSelector } from "@/lib/reduxHooks";
+import { useAppDispatch } from "@/lib/reduxHooks";
+import { loadingstate } from "@/lib/features/userdetails";
 export default function Navbar() {
+    const dispatch=useAppDispatch();
     const {toast}=useToast();
     const router = useRouter();
-    // const username=useAppSelector(state=>state.user.userName)
     const handlesignout=async ()=>{
+        dispatch(loadingstate(true));
         const response=await fetch('/api/Auth/SignOut',{
             method:'GET'
         })
         const res=await response.json();
-        if(res.status==="200") {
+        console.log("message : ",res.message)
+        console.log(res)
+        if(res.status=="200") {
             router.replace('/auth/signin');
             toast({title:res.message});
             return;
@@ -36,14 +40,14 @@ export default function Navbar() {
                 <ul className="flex w-[70%] md:w-[40%] justify-around text-[12px] md:text-[17px] items-center font-medium">
                     <li onClick={() => router.push('/projects')} className="cursor-pointer">Projects</li>
                     <li onClick={() => router.push('/people')} className="cursor-pointer">People</li>
-                    <li onClick={() => router.push('/insights')} className="cursor-pointer">Insights</li>
+                    <li onClick={() => router.push('/dashboard')} className="cursor-pointer">Dashboard</li>
                     <li>
                         <DropdownMenu>
                             <DropdownMenuTrigger className="items-center flex" ><CgProfile className="w-[30px] h-[30px]"/></DropdownMenuTrigger>
                             <DropdownMenuContent className="mt-[30px] md:mr-[50px] md:w-[200px] bg-white">
                                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem className="cursor-pointer" onClick={()=>router.push('/profile')}>Profile</DropdownMenuItem>
+                                <DropdownMenuItem className="cursor-pointer" onClick={()=>{dispatch(loadingstate(true));router.push('/profile')}}>Profile</DropdownMenuItem>
                                 <DropdownMenuItem className="cursor-pointer" onClick={()=>router.push('/dashboard')}>Dashboard</DropdownMenuItem>
                                 <DropdownMenuItem>Premium Membership</DropdownMenuItem>
                                 <DropdownMenuItem className="cursor-pointer" >Bid Insights</DropdownMenuItem>
