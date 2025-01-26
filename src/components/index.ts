@@ -12,6 +12,7 @@ import AllProjectsLoader from "./general/AllProjectsLoader";
 import UserCard from "./general/UserCard";
 import UserProfile from "./general/UserProfileComps/UserProfile";
 import Footer from "./general/ProtectedFooter/Footer";
+import DashboardComponent from "./Dashboard/DashboardComponent";
 export {LoginBox,
     SignupBox,
     Navbar,
@@ -26,4 +27,5 @@ export {LoginBox,
     UserCard,
     UserProfile,
     Footer,
+    DashboardComponent
 };

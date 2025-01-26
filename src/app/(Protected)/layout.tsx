@@ -7,6 +7,7 @@ import { Footer, Navbar } from "@/components";
 import StoreProvider from "./StoreProvider";
 import UserDataFetching from "@/components/general/UserDataFetching";
 import { useToast } from "@/hooks/use-toast";
+import ChildLayout from "./childLayout";
 export default function ProtectedLayout({
   children,
 }: Readonly<{
@@ -36,15 +37,17 @@ export default function ProtectedLayout({
   })
   return (
     loading ? (
-      <TbLoader3 className="w-[50px] h-[50px] animate-spin mx-auto mt-[100px]" />
+      <TbLoader3 className="w-[50px] h-[50px] animate-spin mx-auto mt-[100px]"/>
     ) : (
       <>
         <StoreProvider>
           <div className=" w-full h-screen ">
             <div className="w-[90%] md:w-[70%] h-[100%] m-auto py-[10px]">
               <UserDataFetching/>
-              <Navbar />
-              {children}
+              <Navbar/>
+              <ChildLayout>
+                {children}
+              </ChildLayout>
               <Footer/>
             </div>
           </div>
