@@ -102,7 +102,7 @@ export default function Projects() {
                                                 <DialogDescription className="h-[150px] flex flex-col ">
                                                     <span className="w-[90%] flex flex-col mt-[30px]" style={{}}>
                                                         <span className="text-[13px] font-medium">{project.title.length > 100 ? project.title.slice(0,100)+" .....":project.title}</span>
-                                                        <span className="text-[25px] font-bold">{project.skills}</span>
+                                                        
                                                         <span className=" text-[10px] font-light">{project.created_at.slice(0,10)} | Rs. {project.min_budget} - Rs. {project.max_budget}</span>
                                                     </span>
                                                     <span className="font-medium text-[20px] text-left mt-[20px]">Do you really want to delete this record ?</span>
